@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import model.Resource;
 import model.Resource.ResourceStatus;
 import model.dao.ResourceDAO;
@@ -47,4 +48,13 @@ public class ResourceController {
         }
         return success;
     }
+    
+    public boolean updateResource(Resource r) { return resourceDAO.update(r); }
+    public boolean deleteResource(int id)     { return resourceDAO.delete(id); }
+ 
+    public List<Resource> getAllResources() {
+        try { return resourceDAO.getAll(); }
+        catch (Exception e) { System.out.println(e.getMessage()); return null; }
+    }
+    
 }

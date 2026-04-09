@@ -50,4 +50,8 @@ public class Staff {
 
     public LocalDateTime getUpdatedAt()              { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
+    public void setDateRegistered(LocalDateTime toLocalDateTime) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

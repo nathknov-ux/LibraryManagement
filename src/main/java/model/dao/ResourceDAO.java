@@ -1,8 +1,13 @@
 package model.dao;
 
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.ArrayList;
 import model.Resource;
 import util.BarcodeUtil;
 import util.DBConnection;
@@ -10,7 +15,30 @@ import util.DBConnection;
 
 public class ResourceDAO {
     
-    private void insertCopies(Connection conn, Resource resource, int count) throws SQLException {
+    private Resource mapRow(ResultSet rs) throws SQLException {
+        Resource r = new Resource();
+        r.setResourceId(rs.getInt("resource_id"));
+        r.setTitle(rs.getString("title"));
+        r.setResourceType(Resource.ResourceType.fromString(rs.getString("resource_type")));
+        r.setAuthor(rs.getString("author"));
+        int year = rs.getInt("year_published");
+        r.setYearPublished(rs.wasNull() ? null : year);
+        r.setIsbnIssn(rs.getString("isbn_issn"));
+        r.setDegreeLevel(rs.getString("degree_level"));
+        r.setStatus(Resource.ResourceStatus.fromString(rs.getString("status")));
+        r.setTotalCopies(rs.getInt("total_copies"));
+        r.setAvailableCopies(rs.getInt("available_copies"));
+        int addedBy = rs.getInt("added_by");
+        r.setAddedBy(rs.wasNull() ? null : addedBy);
+        Timestamp ca = rs.getTimestamp("created_at");
+        if (ca != null) r.setCreatedAt(ca.toLocalDateTime());
+        Timestamp ua = rs.getTimestamp("updated_at");
+        if (ua != null) r.setUpdatedAt(ua.toLocalDateTime());
+        return r;
+    }
+
+    
+    private static void insertCopies(Connection conn, Resource resource, int count) throws SQLException {
         int lastNumber = BarcodeUtil.getLastBarcodeNumber(conn);
  
         String sql = "INSERT INTO resource_copy (barcode, resource_id, status) VALUES (?, ?, 'available')";
@@ -58,6 +86,78 @@ public class ResourceDAO {
 
         } catch (SQLException e) {
             System.out.println("Insert Failed: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public List<Resource> getAll() throws SQLException {
+        List<Resource> list = new ArrayList<>();
+        String sql = "SELECT * FROM resource ORDER BY created_at DESC";
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
+            
+            while (rs.next()) list.add(mapRow(rs));
+        }
+        return list;
+    }
+    
+    public Resource getById(int id) throws SQLException {
+        String sql = "SELECT * FROM resource WHERE resource_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return mapRow(rs);
+            }
+        }
+        return null;
+    }
+    
+    public List<Resource> search(String keyword) throws SQLException {
+        List<Resource> list = new ArrayList<>();
+        String sql = "SELECT * FROM resource WHERE title LIKE ? OR author LIKE ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + keyword + "%");
+            ps.setString(2, "%" + keyword + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) list.add(mapRow(rs));
+            }
+        }
+        return list;
+    }    
+    
+    public boolean update(Resource r) {
+        String sql = "UPDATE resource SET title=?, resource_type=?, author=?, " +
+            "year_published=?, isbn_issn=?, degree_level=?, status=? " +
+            "WHERE resource_id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, r.getTitle());
+            ps.setString(2, r.getResourceType().name().toLowerCase());
+            ps.setString(3, r.getAuthor());
+            ps.setInt(4, r.getYearPublished());
+            ps.setString(5, r.getIsbnIssn());
+            ps.setString(6, r.getDegreeLevel());
+            ps.setString(7, r.getStatus().name().toLowerCase());
+            ps.setInt(8, r.getResourceId());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Update failed: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean delete(int resourceId) {
+        // Will fail if resource_copy rows still exist (FK RESTRICT)
+        String sql = "DELETE FROM resource WHERE resource_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, resourceId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Delete failed: " + e.getMessage());
             return false;
         }
     }
