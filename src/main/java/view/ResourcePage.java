@@ -4,11 +4,16 @@
  */
 package view;
 
+import controller.ResourceController;
 import javax.swing.JFrame;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Resource;
+import model.dao.ResourceDAO;
 /**
  *
  * @author A
@@ -22,6 +27,7 @@ public class ResourcePage extends javax.swing.JFrame {
      */
     public ResourcePage() {
     initComponents();
+    allResourcesTable();
     startClock();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 }
@@ -396,51 +402,101 @@ private void startClock() {
         books_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         books_button.setForeground(new java.awt.Color(255, 255, 255));
         books_button.setText("BOOKS");
+        books_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                books_buttonActionPerformed(evt);
+            }
+        });
 
         diss_button.setBackground(new java.awt.Color(0, 0, 0));
         diss_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         diss_button.setForeground(new java.awt.Color(255, 255, 255));
         diss_button.setText("DISSERTATION");
+        diss_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diss_buttonActionPerformed(evt);
+            }
+        });
 
         govdocs_button.setBackground(new java.awt.Color(0, 0, 0));
         govdocs_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         govdocs_button.setForeground(new java.awt.Color(255, 255, 255));
         govdocs_button.setText("GOVERNMENT DOCUMENTS");
+        govdocs_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                govdocs_buttonActionPerformed(evt);
+            }
+        });
 
         journal_button.setBackground(new java.awt.Color(0, 0, 0));
         journal_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         journal_button.setForeground(new java.awt.Color(255, 255, 255));
         journal_button.setText("JOURNAL");
+        journal_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                journal_buttonActionPerformed(evt);
+            }
+        });
 
         map_button.setBackground(new java.awt.Color(0, 0, 0));
         map_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         map_button.setForeground(new java.awt.Color(255, 255, 255));
         map_button.setText("MAP");
+        map_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                map_buttonActionPerformed(evt);
+            }
+        });
 
         magazine_button.setBackground(new java.awt.Color(0, 0, 0));
         magazine_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         magazine_button.setForeground(new java.awt.Color(255, 255, 255));
         magazine_button.setText("MAGAZINE");
+        magazine_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                magazine_buttonActionPerformed(evt);
+            }
+        });
 
         news_button.setBackground(new java.awt.Color(0, 0, 0));
         news_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         news_button.setForeground(new java.awt.Color(255, 255, 255));
         news_button.setText("NEWSPAPER");
+        news_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                news_buttonActionPerformed(evt);
+            }
+        });
 
         research_button.setBackground(new java.awt.Color(0, 0, 0));
         research_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         research_button.setForeground(new java.awt.Color(255, 255, 255));
         research_button.setText("RESEARCH PAPER");
+        research_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                research_buttonActionPerformed(evt);
+            }
+        });
 
         others_button.setBackground(new java.awt.Color(0, 0, 0));
         others_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         others_button.setForeground(new java.awt.Color(255, 255, 255));
         others_button.setText("OTHERS");
+        others_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                others_buttonActionPerformed(evt);
+            }
+        });
 
         thesis_button.setBackground(new java.awt.Color(0, 0, 0));
         thesis_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         thesis_button.setForeground(new java.awt.Color(255, 255, 255));
         thesis_button.setText("THESIS");
+        thesis_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thesis_buttonActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel11.setText("CATEGORIES");
@@ -506,10 +562,7 @@ private void startClock() {
 
         resourceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "RESOURCE ID", "TITLE", "RESOURCE TYPE", "AUTHOR", "YEAR PUBLISHED", "ISBN-ISSN", "DEGREE LEVEL", "STATUS", "TOTAL COPIES", "AVAILABLE COPIES", "ADDED BY", "CREATED AT", "UPDATED AT"
@@ -519,7 +572,7 @@ private void startClock() {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, true, true, true, true, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -531,6 +584,10 @@ private void startClock() {
             }
         });
         jScrollPane1.setViewportView(resourceTable);
+        if (resourceTable.getColumnModel().getColumnCount() > 0) {
+            resourceTable.getColumnModel().getColumn(0).setPreferredWidth(4);
+            resourceTable.getColumnModel().getColumn(2).setPreferredWidth(5);
+        }
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -925,11 +982,11 @@ private void startClock() {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void all_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_all_buttonActionPerformed
-        // TODO add your handling code here:
+        allResourcesTable();
     }//GEN-LAST:event_all_buttonActionPerformed
 
     private void audiovisual_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audiovisual_buttonActionPerformed
-        // TODO add your handling code here:
+        resourceTypeTable("audiovisual");
     }//GEN-LAST:event_audiovisual_buttonActionPerformed
 
     private void resouce_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resouce_idActionPerformed
@@ -976,9 +1033,108 @@ private void startClock() {
         // TODO add your handling code here:
     }//GEN-LAST:event_statusActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void books_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_books_buttonActionPerformed
+        resourceTypeTable("book");
+    }//GEN-LAST:event_books_buttonActionPerformed
+
+    private void diss_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diss_buttonActionPerformed
+        resourceTypeTable("dissertation");
+    }//GEN-LAST:event_diss_buttonActionPerformed
+
+    private void govdocs_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_govdocs_buttonActionPerformed
+         resourceTypeTable("government_document");
+    }//GEN-LAST:event_govdocs_buttonActionPerformed
+
+    private void journal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_journal_buttonActionPerformed
+         resourceTypeTable("journal");
+    }//GEN-LAST:event_journal_buttonActionPerformed
+
+    private void map_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map_buttonActionPerformed
+         resourceTypeTable("map");
+    }//GEN-LAST:event_map_buttonActionPerformed
+
+    private void magazine_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_magazine_buttonActionPerformed
+        resourceTypeTable("magazine");
+    }//GEN-LAST:event_magazine_buttonActionPerformed
+
+    private void news_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_news_buttonActionPerformed
+         resourceTypeTable("newspaper");
+    }//GEN-LAST:event_news_buttonActionPerformed
+
+    private void research_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_research_buttonActionPerformed
+        resourceTypeTable("research_paper");
+    }//GEN-LAST:event_research_buttonActionPerformed
+
+    private void thesis_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thesis_buttonActionPerformed
+         resourceTypeTable("thesis");
+    }//GEN-LAST:event_thesis_buttonActionPerformed
+
+    private void others_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_others_buttonActionPerformed
+        resourceTypeTable("other");
+    }//GEN-LAST:event_others_buttonActionPerformed
+
+    private void allResourcesTable() {
+        try {
+            ResourceDAO dao = new ResourceDAO();
+            List<Resource> list = dao.getAll();
+
+            DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
+            model.setRowCount(0); // clear table
+
+            for (Resource r : list) {
+                model.addRow(new Object[]{
+                    r.getResourceId(),
+                    r.getTitle(),
+                    r.getResourceType(),
+                    r.getAuthor(),
+                    r.getYearPublished(),
+                    r.getIsbnIssn(),
+                    r.getDegreeLevel(),
+                    r.getStatus(),
+                    r.getTotalCopies(),
+                    r.getAvailableCopies(),
+                    r.getAddedBy(),
+                    r.getCreatedAt(),
+                    r.getUpdatedAt()
+                });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    private void resourceTypeTable(String type) {
+        try {
+            ResourceController rc = new ResourceController();
+            List<Resource> list = rc.getByType(type);
+
+            DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
+            model.setRowCount(0); // clear table
+
+            for (Resource r : list) {
+                model.addRow(new Object[]{
+                    r.getResourceId(),
+                    r.getTitle(),
+                    r.getResourceType(),
+                    r.getAuthor(),
+                    r.getYearPublished(),
+                    r.getIsbnIssn(),
+                    r.getDegreeLevel(),
+                    r.getStatus(),
+                    r.getTotalCopies(),
+                    r.getAvailableCopies(),
+                    r.getAddedBy(),
+                    r.getCreatedAt(),
+                    r.getUpdatedAt()
+                });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

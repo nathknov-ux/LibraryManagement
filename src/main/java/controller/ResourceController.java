@@ -40,7 +40,7 @@ public class ResourceController {
         r.setAddedBy(addedBy);
 
         // 3. Call DAO
-        boolean success = resourceDAO.Create(r);
+        boolean success = resourceDAO.create(r);
         if (success) {
             System.out.println("Resource added successfully.");
         } else {
@@ -57,4 +57,8 @@ public class ResourceController {
         catch (Exception e) { System.out.println(e.getMessage()); return null; }
     }
     
+    public List<Resource> getByType(String type) {
+        try { return resourceDAO.getByType(type); }
+        catch (Exception e) { System.out.println(e.getMessage()); return null; }
+    }
 }

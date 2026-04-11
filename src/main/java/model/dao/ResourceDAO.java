@@ -54,7 +54,7 @@ public class ResourceDAO {
         }
     }
     
-    public boolean Create(Resource r) {
+    public boolean create(Resource r) {
         String qry = "INSERT INTO resource (title, resource_type, author, year_published, isbn_issn, degree_level, status, added_by) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
@@ -112,6 +112,21 @@ public class ResourceDAO {
             }
         }
         return null;
+    }
+    
+    public List<Resource> getByType(String type) throws SQLException {
+        List<Resource> list = new ArrayList<>();
+        String sql = "SELECT * FROM resource WHERE resource_type = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, type);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    list.add(mapRow(rs));
+                }
+            }
+        }
+        return list;
     }
     
     public List<Resource> search(String keyword) throws SQLException {
