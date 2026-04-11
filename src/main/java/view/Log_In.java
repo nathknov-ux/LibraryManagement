@@ -47,13 +47,13 @@ public class Log_In extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         SignIn3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = (javax.swing.JPanel) new RoundedPanel(40, Color.BLACK); jPanel2.setOpaque(false);
         ;
         SignIn2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         spcb = new javax.swing.JCheckBox();
         passwords = new javax.swing.JPasswordField();
 
@@ -85,16 +85,16 @@ public class Log_In extends javax.swing.JFrame {
         jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Georgia", 1, 34)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Georgia", 1, 28)); // NOI18N
         jLabel4.setText("LIBRARY MANAGEMENT ");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 236, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 400, -1));
 
         jLabel5.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel5.setText("SYSTEM");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 294, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log out black.png"))); // NOI18N
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 132, -1, -1));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
         SignIn3.setBackground(new java.awt.Color(0, 0, 0));
         SignIn3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -105,11 +105,16 @@ public class Log_In extends javax.swing.JFrame {
                 SignIn3ActionPerformed(evt);
             }
         });
-        jPanel3.add(SignIn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 509, 149, 35));
+        jPanel3.add(SignIn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 149, 35));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel6.setText("New to our platform? Sign in now!");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 483, -1, -1));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, -1, -1));
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Georgia", 1, 48)); // NOI18N
+        jLabel7.setText("OOKEEPR ™");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
 
         jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 200, 540, 660));
 
@@ -139,6 +144,9 @@ public class Log_In extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 usernameFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usernameFocusLost(evt);
+            }
         });
         username.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -150,10 +158,11 @@ public class Log_In extends javax.swing.JFrame {
                 usernameActionPerformed(evt);
             }
         });
-
-        jLabel7.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("BOOKEEPR ™");
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameKeyPressed(evt);
+            }
+        });
 
         spcb.setBackground(new java.awt.Color(0, 0, 0));
         spcb.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,6 +180,9 @@ public class Log_In extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordsFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordsFocusLost(evt);
+            }
         });
         passwords.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,46 +194,47 @@ public class Log_In extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(137, 137, 137)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(122, 122, 122)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 17, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jLabel7))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(SignIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(spcb)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                                .addComponent(passwords)))))
+                            .addComponent(passwords, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(132, 132, 132))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addComponent(SignIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jLabel7)
-                .addGap(26, 26, 26)
+                .addGap(149, 149, 149)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(47, 47, 47)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(29, 29, 29)
                 .addComponent(passwords, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spcb)
-                .addGap(28, 28, 28)
-                .addComponent(SignIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(SignIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 534, 660));
@@ -244,11 +257,13 @@ public class Log_In extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameActionPerformed
 
     private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
-
+        
     }//GEN-LAST:event_usernameFocusGained
 
     private void usernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseClicked
-         username.setText("");
+        if(username.getText().equals("Username")) {
+           username.setText("");
+       }
     }//GEN-LAST:event_usernameMouseClicked
 
     private void SignIn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignIn3ActionPerformed
@@ -261,17 +276,39 @@ public class Log_In extends javax.swing.JFrame {
         if (spcb.isSelected()) {
         passwords.setEchoChar((char) 0); // show
     } else {
-        passwords.setEchoChar('*');      // hide
+        passwords.setEchoChar('•');      // hide
     }
     }//GEN-LAST:event_spcbActionPerformed
 
     private void passwordsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordsFocusGained
+        if (String.valueOf(passwords.getPassword()).equals("Password")) {
         passwords.setText("");
+        passwords.setEchoChar('•');
+    }
     }//GEN-LAST:event_passwordsFocusGained
 
     private void passwordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordsActionPerformed
+
+    private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
+        if (String.valueOf(username.getText()).isEmpty()) {
+        username.setText("Username");
+        }
+    }//GEN-LAST:event_usernameFocusLost
+
+    private void passwordsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordsFocusLost
+        if (String.valueOf(passwords.getPassword()).isEmpty()) {
+        passwords.setText("Password");
+        passwords.setEchoChar((char) 0);
+    }
+    }//GEN-LAST:event_passwordsFocusLost
+
+    private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
+        if (username.getText().equals("Username")) {
+        username.setText("");
+    }
+    }//GEN-LAST:event_usernameKeyPressed
     
     /**
      * @param args the command line arguments

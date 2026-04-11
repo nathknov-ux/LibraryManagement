@@ -42,17 +42,19 @@ public class Sign_Up extends javax.swing.JFrame {
         Emails = new javax.swing.JTextField();
         UsernNames = new javax.swing.JTextField();
         SignUp2 = new javax.swing.JButton();
-        FullName = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        MiddleInitial = new javax.swing.JTextField();
         spcb = new javax.swing.JCheckBox();
         passwords = new javax.swing.JPasswordField();
-        jLabel8 = new javax.swing.JLabel();
+        Surname = new javax.swing.JTextField();
+        FirstName = new javax.swing.JTextField();
         jPanel2 = (javax.swing.JPanel) new RoundedPanel(40, Color.WHITE); jPanel2.setOpaque(false);
         ;
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         SignIn2 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
 
@@ -86,6 +88,9 @@ public class Sign_Up extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 EmailsFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                EmailsFocusLost(evt);
+            }
         });
 
         UsernNames.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -93,6 +98,9 @@ public class Sign_Up extends javax.swing.JFrame {
         UsernNames.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 UsernNamesFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                UsernNamesFocusLost(evt);
             }
         });
 
@@ -104,28 +112,29 @@ public class Sign_Up extends javax.swing.JFrame {
             }
         });
 
-        FullName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        FullName.setText("Full Name (Surname, Firstname M.I)");
-        FullName.addFocusListener(new java.awt.event.FocusAdapter() {
+        MiddleInitial.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MiddleInitial.setText("M.I");
+        MiddleInitial.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                FullNameFocusGained(evt);
+                MiddleInitialFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                FullNameFocusLost(evt);
+                MiddleInitialFocusLost(evt);
             }
         });
-        FullName.addMouseListener(new java.awt.event.MouseAdapter() {
+        MiddleInitial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                FullNameMouseClicked(evt);
+                MiddleInitialMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                FullNameMouseExited(evt);
+                MiddleInitialMouseExited(evt);
             }
         });
-
-        jLabel7.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("BOOKEEPR ™");
+        MiddleInitial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MiddleInitialActionPerformed(evt);
+            }
+        });
 
         spcb.setBackground(new java.awt.Color(0, 0, 0));
         spcb.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,55 +162,107 @@ public class Sign_Up extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo black.png"))); // NOI18N
+        Surname.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        Surname.setText("Surname");
+        Surname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                SurnameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                SurnameFocusLost(evt);
+            }
+        });
+        Surname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SurnameMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SurnameMouseExited(evt);
+            }
+        });
+        Surname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SurnameActionPerformed(evt);
+            }
+        });
+        Surname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SurnameKeyPressed(evt);
+            }
+        });
+
+        FirstName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        FirstName.setText("First Name");
+        FirstName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                FirstNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                FirstNameFocusLost(evt);
+            }
+        });
+        FirstName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FirstNameMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                FirstNameMouseExited(evt);
+            }
+        });
+        FirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstNameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(jLabel1)))
+                .addContainerGap(133, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SignUp2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(174, 174, 174))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(FullName, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(spcb)
-                        .addComponent(UsernNames, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                        .addComponent(passwords, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Emails, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(80, 80, 80))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(133, 133, 133)
-                            .addComponent(jLabel2))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(212, 212, 212)
-                            .addComponent(jLabel1))))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(spcb)
+                            .addComponent(UsernNames, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                            .addComponent(passwords, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Emails, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(80, 80, 80))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(Surname, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(MiddleInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
+                .addGap(183, 183, 183)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(FullName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MiddleInitial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Surname, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(Emails, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -221,15 +282,19 @@ public class Sign_Up extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(1023, 660));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Georgia", 1, 34)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Georgia", 1, 28)); // NOI18N
         jLabel4.setText("LIBRARY MANAGEMENT ");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel5.setText("SYSTEM");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel6.setText("Already have Account? Sign In Now.");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 478, -1, -1));
 
         SignIn2.setBackground(new java.awt.Color(0, 0, 0));
         SignIn2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -240,40 +305,14 @@ public class Sign_Up extends javax.swing.JFrame {
                 SignIn2ActionPerformed(evt);
             }
         });
+        jPanel2.add(SignIn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 515, 149, 35));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(SignIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel4)))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addGap(180, 180, 180)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(SignIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
-        );
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Georgia", 1, 48)); // NOI18N
+        jLabel7.setText("OOKEEPR ™");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 330, -1));
 
         jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 534, -1));
 
@@ -296,23 +335,27 @@ public class Sign_Up extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_spcbActionPerformed
 
-    private void FullNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullNameMouseClicked
+    private void MiddleInitialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiddleInitialMouseClicked
         
-    }//GEN-LAST:event_FullNameMouseClicked
+    }//GEN-LAST:event_MiddleInitialMouseClicked
 
     private void EmailsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailsFocusGained
-        Emails.setText("");
+        if (Emails.getText().equals("Email")) {
+            Emails.setText("");
+    }
     }//GEN-LAST:event_EmailsFocusGained
 
     private void UsernNamesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernNamesFocusGained
-        UsernNames.setText("");
+        if (UsernNames.getText().equals("Username")) {
+            UsernNames.setText("");
+    }
     }//GEN-LAST:event_UsernNamesFocusGained
 
     private void passwordsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordsFocusGained
 
         if (String.valueOf(passwords.getPassword()).equals("Password")) {
         passwords.setText("");
-        passwords.setEchoChar('*'); // switch to masking when user types
+        passwords.setEchoChar('•');
     }
     }//GEN-LAST:event_passwordsFocusGained
 
@@ -326,11 +369,11 @@ public class Sign_Up extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordsActionPerformed
 
-    private void FullNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FullNameFocusLost
-        if (String.valueOf(FullName.getText()).isEmpty()) {
-        FullName.setText("Full Name (Surname, Firstname M.I)");
+    private void MiddleInitialFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MiddleInitialFocusLost
+        if (String.valueOf(MiddleInitial.getText()).isEmpty()) {
+        MiddleInitial.setText("M.I");
     }
-    }//GEN-LAST:event_FullNameFocusLost
+    }//GEN-LAST:event_MiddleInitialFocusLost
 
     private void passwordsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordsFocusLost
         if (String.valueOf(passwords.getPassword()).isEmpty()) {
@@ -339,13 +382,85 @@ public class Sign_Up extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_passwordsFocusLost
 
-    private void FullNameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullNameMouseExited
+    private void MiddleInitialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiddleInitialMouseExited
       
-    }//GEN-LAST:event_FullNameMouseExited
+    }//GEN-LAST:event_MiddleInitialMouseExited
 
-    private void FullNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FullNameFocusGained
+    private void MiddleInitialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MiddleInitialFocusGained
+            if (MiddleInitial.getText().equals("M.I")) {
+            MiddleInitial.setText("");
+    }
+    }//GEN-LAST:event_MiddleInitialFocusGained
 
-    }//GEN-LAST:event_FullNameFocusGained
+    private void SurnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SurnameFocusGained
+       
+    }//GEN-LAST:event_SurnameFocusGained
+
+    private void SurnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SurnameFocusLost
+        if (String.valueOf(Surname.getText()).isEmpty()) {
+        Surname.setText("Surname");
+        }
+    }//GEN-LAST:event_SurnameFocusLost
+
+    private void SurnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SurnameMouseClicked
+       if(Surname.getText().equals("Surname")) {
+           Surname.setText("");
+       }
+    }//GEN-LAST:event_SurnameMouseClicked
+
+    private void SurnameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SurnameMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SurnameMouseExited
+
+    private void FirstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FirstNameFocusGained
+            if(FirstName.getText().equals("First Name")) {
+           FirstName.setText("");
+       }
+    }//GEN-LAST:event_FirstNameFocusGained
+
+    private void FirstNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FirstNameFocusLost
+        if (FirstName.getText().isEmpty()) {
+        FirstName.setText("First Name");
+    }
+    }//GEN-LAST:event_FirstNameFocusLost
+
+    private void FirstNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FirstNameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameMouseClicked
+
+    private void FirstNameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FirstNameMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameMouseExited
+
+    private void MiddleInitialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiddleInitialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MiddleInitialActionPerformed
+
+    private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameActionPerformed
+
+    private void SurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SurnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SurnameActionPerformed
+
+    private void EmailsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailsFocusLost
+       if (Emails.getText().isEmpty()) {
+        Emails.setText("Email");
+    }
+    }//GEN-LAST:event_EmailsFocusLost
+
+    private void UsernNamesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernNamesFocusLost
+        if (UsernNames.getText().isEmpty()) {
+        UsernNames.setText("Username");
+    }
+    }//GEN-LAST:event_UsernNamesFocusLost
+
+    private void SurnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SurnameKeyPressed
+        if (Surname.getText().equals("Surname")) {
+        Surname.setText("");
+    }
+    }//GEN-LAST:event_SurnameKeyPressed
 
     /**
      * @param args the command line arguments
@@ -374,9 +489,11 @@ public class Sign_Up extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Emails;
-    private javax.swing.JTextField FullName;
+    private javax.swing.JTextField FirstName;
+    private javax.swing.JTextField MiddleInitial;
     private javax.swing.JButton SignIn2;
     private javax.swing.JButton SignUp2;
+    private javax.swing.JTextField Surname;
     private javax.swing.JTextField UsernNames;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
@@ -386,7 +503,7 @@ public class Sign_Up extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

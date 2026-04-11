@@ -45,6 +45,7 @@ private void startClock() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel24 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -68,6 +69,8 @@ private void startClock() {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         user = new javax.swing.JLabel();
+        fullname = new javax.swing.JLabel();
+        position = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         dateTimeLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -75,16 +78,62 @@ private void startClock() {
         jLabel9 = new javax.swing.JLabel();
         jPanel16 = (javax.swing.JPanel) new All_Rounded(40, Color.WHITE); jPanel5.setOpaque(false)
         ;
-        jLabel13 = new javax.swing.JLabel();
+        borrowed_resources = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        audiovisual_borrow = new javax.swing.JLabel();
+        books_borrow = new javax.swing.JLabel();
+        dissertation_borrow = new javax.swing.JLabel();
+        govdocs_borrow = new javax.swing.JLabel();
+        journal_borrow = new javax.swing.JLabel();
+        maps_borrow = new javax.swing.JLabel();
+        magazine_borrow = new javax.swing.JLabel();
+        news_borrow = new javax.swing.JLabel();
+        research_borrow = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        thesis_borrow = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        others_borrow = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel15 = (javax.swing.JPanel) new All_Rounded(40, Color.BLACK); jPanel5.setOpaque(false)
         ;
-        jLabel14 = new javax.swing.JLabel();
+        available_resources = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        audiovisual_total = new javax.swing.JLabel();
+        books_total = new javax.swing.JLabel();
+        govdocs_total = new javax.swing.JLabel();
+        dissertation_total = new javax.swing.JLabel();
+        journal_total = new javax.swing.JLabel();
+        map_total = new javax.swing.JLabel();
+        magazine_total = new javax.swing.JLabel();
+        news_total = new javax.swing.JLabel();
+        research_total = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        thesis_total = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        others_total = new javax.swing.JLabel();
+
+        jLabel24.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel24.setText("Audiovisual: ");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,7 +153,7 @@ private void startClock() {
         jLabel6.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log out white.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo white.png"))); // NOI18N
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -258,19 +307,19 @@ private void startClock() {
                         .addGap(133, 133, 133)
                         .addComponent(jLabel6))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel7))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(26, 26, 26)
                         .addComponent(log_out, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel7)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel3)
@@ -297,25 +346,18 @@ private void startClock() {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
-        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/book black.png"))); // NOI18N
-        user.setText("Name");
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(user)
-                .addContainerGap(188, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(user)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile.png"))); // NOI18N
+        jPanel3.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 40));
+
+        fullname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        fullname.setText("EDQUIBAL, Christian Mark B.");
+        jPanel3.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+
+        position.setText("ADMIN");
+        jPanel3.add(position, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -340,6 +382,7 @@ private void startClock() {
         );
 
         jLabel8.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dashboard logo.png"))); // NOI18N
         jLabel8.setText("DASHBOARD");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -347,46 +390,46 @@ private void startClock() {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel8)
-                .addGap(455, 455, 455)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1820, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1820, 80));
 
         jPanel13.setBackground(new java.awt.Color(0, 0, 0));
         jPanel13.setBorder(new javax.swing.border.EmptyBorder(10, 10, 10, 10));
         jPanel13.setForeground(new java.awt.Color(255, 255, 255));
         jPanel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("BORROWED RESOURCES");
-        jPanel13.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, -1));
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Georgia", 1, 100)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("10452");
+        borrowed_resources.setBackground(new java.awt.Color(255, 255, 255));
+        borrowed_resources.setFont(new java.awt.Font("Georgia", 1, 100)); // NOI18N
+        borrowed_resources.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        borrowed_resources.setText("10452");
 
         jLabel10.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
         jLabel10.setText("TOTAL");
@@ -399,7 +442,7 @@ private void startClock() {
                 .addContainerGap(212, Short.MAX_VALUE)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
+                        .addComponent(borrowed_resources)
                         .addGap(186, 186, 186))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -411,30 +454,221 @@ private void startClock() {
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addComponent(borrowed_resources)
                 .addGap(80, 80, 80))
         );
 
-        jPanel13.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, 280));
+        jLabel27.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Books: ");
+
+        jLabel28.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Audiovisual: ");
+
+        jLabel29.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Dissertation: ");
+
+        jLabel30.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Government Documents: ");
+
+        jLabel31.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Journal: ");
+
+        jLabel32.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Map: ");
+
+        jLabel13.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Magazine: ");
+
+        jLabel33.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel33.setText("Newspaper : ");
+
+        jLabel34.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Research Paper:");
+
+        audiovisual_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        audiovisual_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        audiovisual_borrow.setText("1900");
+
+        books_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        books_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        books_borrow.setText("1900");
+
+        dissertation_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        dissertation_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        dissertation_borrow.setText("1900");
+
+        govdocs_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        govdocs_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        govdocs_borrow.setText("1900");
+
+        journal_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        journal_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        journal_borrow.setText("1900");
+
+        maps_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        maps_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        maps_borrow.setText("1900");
+
+        magazine_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        magazine_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        magazine_borrow.setText("1900");
+
+        news_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        news_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        news_borrow.setText("1900");
+
+        research_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        research_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        research_borrow.setText("1900");
+
+        jLabel37.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Thesis:");
+
+        thesis_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        thesis_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        thesis_borrow.setText("1900");
+
+        jLabel38.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("Others: ");
+
+        others_borrow.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        others_borrow.setForeground(new java.awt.Color(255, 255, 255));
+        others_borrow.setText("1900");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel30)
+                                    .addComponent(jLabel27)
+                                    .addComponent(jLabel29)
+                                    .addComponent(jLabel31)
+                                    .addComponent(jLabel32)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel33))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(audiovisual_borrow)
+                                    .addComponent(books_borrow)
+                                    .addComponent(dissertation_borrow)
+                                    .addComponent(govdocs_borrow)
+                                    .addComponent(journal_borrow)
+                                    .addComponent(maps_borrow)
+                                    .addComponent(magazine_borrow)
+                                    .addComponent(news_borrow)
+                                    .addComponent(research_borrow)))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGap(188, 188, 188)
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel13Layout.createSequentialGroup()
+                                        .addComponent(jLabel38)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(others_borrow))
+                                    .addGroup(jPanel13Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel37)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(thesis_borrow))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                                .addComponent(jLabel34)
+                                .addGap(435, 435, 435)))))
+                .addGap(125, 125, 125))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel9)
+                .addGap(29, 29, 29)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(audiovisual_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(books_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(dissertation_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(govdocs_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(journal_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(maps_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(magazine_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(news_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(research_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37)
+                    .addComponent(thesis_borrow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(others_borrow)
+                    .addComponent(jLabel38)))
+        );
 
         jPanel1.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 110, 970, 970));
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         jLabel4.setText("AVAILABLE RESOURCES");
 
         jLabel11.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
-        jLabel11.setText("Audiovisual : ");
 
         jLabel12.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
-        jLabel12.setText("Audiovisual : ");
+        jLabel12.setText("Magazine: ");
 
         jPanel15.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel14.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel14.setFont(new java.awt.Font("Georgia", 1, 100)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("10452");
+        available_resources.setBackground(new java.awt.Color(0, 0, 0));
+        available_resources.setFont(new java.awt.Font("Georgia", 1, 100)); // NOI18N
+        available_resources.setForeground(new java.awt.Color(255, 255, 255));
+        available_resources.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        available_resources.setText("10452");
 
         jLabel15.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -446,7 +680,7 @@ private void startClock() {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap(187, Short.MAX_VALUE)
-                .addComponent(jLabel14)
+                .addComponent(available_resources)
                 .addGap(187, 187, 187))
             .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
@@ -458,7 +692,7 @@ private void startClock() {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(jLabel14)
+                .addComponent(available_resources)
                 .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel15Layout.createSequentialGroup()
@@ -466,6 +700,69 @@ private void startClock() {
                     .addComponent(jLabel15)
                     .addContainerGap(197, Short.MAX_VALUE)))
         );
+
+        jLabel18.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel18.setText("Audiovisual: ");
+
+        jLabel19.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel19.setText("Map: ");
+
+        jLabel20.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel20.setText("Books: ");
+
+        jLabel21.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel21.setText("Newspaper : ");
+
+        jLabel22.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel22.setText("Dissertation: ");
+
+        jLabel23.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel23.setText("Research Paper: ");
+
+        jLabel25.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel25.setText("Journal: ");
+
+        jLabel26.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel26.setText("Government Documents: ");
+
+        audiovisual_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        audiovisual_total.setText("1900");
+
+        books_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        books_total.setText("1900");
+
+        govdocs_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        govdocs_total.setText("1900");
+
+        dissertation_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        dissertation_total.setText("1900");
+
+        journal_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        journal_total.setText("1900");
+
+        map_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        map_total.setText("1900");
+
+        magazine_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        magazine_total.setText("1900");
+
+        news_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        news_total.setText("1900");
+
+        research_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        research_total.setText("1900");
+
+        jLabel35.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel35.setText("Thesis: ");
+
+        thesis_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        thesis_total.setText("1900");
+
+        jLabel36.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel36.setText("Others: ");
+
+        others_total.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        others_total.setText("1900");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -477,13 +774,52 @@ private void startClock() {
                         .addGap(200, 200, 200)
                         .addComponent(jLabel4))
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11)))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGap(134, 134, 134)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel18))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(audiovisual_total)
+                                    .addComponent(books_total)))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel14Layout.createSequentialGroup()
+                                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel22)
+                                            .addComponent(jLabel26)
+                                            .addComponent(jLabel25)
+                                            .addComponent(jLabel19)
+                                            .addComponent(jLabel21)
+                                            .addComponent(jLabel23))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11))
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(govdocs_total)
+                                    .addComponent(dissertation_total)
+                                    .addComponent(journal_total)
+                                    .addComponent(map_total)
+                                    .addComponent(magazine_total)
+                                    .addComponent(news_total)
+                                    .addComponent(research_total)))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGap(188, 188, 188)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel14Layout.createSequentialGroup()
+                                        .addComponent(jLabel36)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(others_total))
+                                    .addGroup(jPanel14Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel35)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(thesis_total)))))))
                 .addContainerGap(143, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
@@ -493,11 +829,56 @@ private void startClock() {
                 .addComponent(jLabel4)
                 .addGap(33, 33, 33)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel11)
-                .addGap(147, 147, 147))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabel11))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(audiovisual_total))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(books_total))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel22)
+                            .addComponent(dissertation_total))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(govdocs_total))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(journal_total))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19)
+                    .addComponent(map_total))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(magazine_total))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(news_total))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(research_total))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(thesis_total))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36)
+                    .addComponent(others_total))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 910, 970));
@@ -596,18 +977,49 @@ private void startClock() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Dashboard;
+    private javax.swing.JLabel audiovisual_borrow;
+    private javax.swing.JLabel audiovisual_total;
+    private javax.swing.JLabel available_resources;
     private javax.swing.JLabel book_icon;
+    private javax.swing.JLabel books_borrow;
+    private javax.swing.JLabel books_total;
+    private javax.swing.JLabel borrowed_resources;
     private javax.swing.JLabel circulation_icon;
     private javax.swing.JLabel dateTimeLabel;
+    private javax.swing.JLabel dissertation_borrow;
+    private javax.swing.JLabel dissertation_total;
+    private javax.swing.JLabel fullname;
+    private javax.swing.JLabel govdocs_borrow;
+    private javax.swing.JLabel govdocs_total;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -629,9 +1041,24 @@ private void startClock() {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel journal_borrow;
+    private javax.swing.JLabel journal_total;
     private javax.swing.JLabel log_out;
+    private javax.swing.JLabel magazine_borrow;
+    private javax.swing.JLabel magazine_total;
+    private javax.swing.JLabel map_total;
+    private javax.swing.JLabel maps_borrow;
     private javax.swing.JLabel members_icon;
+    private javax.swing.JLabel news_borrow;
+    private javax.swing.JLabel news_total;
+    private javax.swing.JLabel others_borrow;
+    private javax.swing.JLabel others_total;
+    private javax.swing.JLabel position;
+    private javax.swing.JLabel research_borrow;
+    private javax.swing.JLabel research_total;
     private javax.swing.JLabel staff_icon;
+    private javax.swing.JLabel thesis_borrow;
+    private javax.swing.JLabel thesis_total;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }
