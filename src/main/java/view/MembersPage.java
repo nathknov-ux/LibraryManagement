@@ -69,9 +69,9 @@ private void startClock() {
         position = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        add_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); add_button.setOpaque(false);
-        update_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); update_button.setOpaque(false);
-        delete_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); delete_button.setOpaque(false);
+        add_member = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); add_member.setOpaque(false);
+        update_member = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); update_member.setOpaque(false);
+        delete_member = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); delete_member.setOpaque(false);
         jLabel14 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -301,48 +301,48 @@ private void startClock() {
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
-        add_button.setBackground(new java.awt.Color(0, 0, 0));
-        add_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        add_button.setForeground(new java.awt.Color(255, 255, 255));
-        add_button.setText("ADD");
-        add_button.addMouseListener(new java.awt.event.MouseAdapter() {
+        add_member.setBackground(new java.awt.Color(0, 0, 0));
+        add_member.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        add_member.setForeground(new java.awt.Color(255, 255, 255));
+        add_member.setText("ADD");
+        add_member.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                add_buttonMouseClicked(evt);
+                add_memberMouseClicked(evt);
             }
         });
-        add_button.addActionListener(new java.awt.event.ActionListener() {
+        add_member.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_buttonActionPerformed(evt);
+                add_memberActionPerformed(evt);
             }
         });
 
-        update_button.setBackground(new java.awt.Color(0, 0, 0));
-        update_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        update_button.setForeground(new java.awt.Color(255, 255, 255));
-        update_button.setText("UPDATE");
-        update_button.addMouseListener(new java.awt.event.MouseAdapter() {
+        update_member.setBackground(new java.awt.Color(0, 0, 0));
+        update_member.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        update_member.setForeground(new java.awt.Color(255, 255, 255));
+        update_member.setText("UPDATE");
+        update_member.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                update_buttonMouseClicked(evt);
+                update_memberMouseClicked(evt);
             }
         });
-        update_button.addActionListener(new java.awt.event.ActionListener() {
+        update_member.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                update_buttonActionPerformed(evt);
+                update_memberActionPerformed(evt);
             }
         });
 
-        delete_button.setBackground(new java.awt.Color(0, 0, 0));
-        delete_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        delete_button.setForeground(new java.awt.Color(255, 255, 255));
-        delete_button.setText("DELETE");
-        delete_button.addMouseListener(new java.awt.event.MouseAdapter() {
+        delete_member.setBackground(new java.awt.Color(0, 0, 0));
+        delete_member.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        delete_member.setForeground(new java.awt.Color(255, 255, 255));
+        delete_member.setText("DELETE");
+        delete_member.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                delete_buttonMouseClicked(evt);
+                delete_memberMouseClicked(evt);
             }
         });
-        delete_button.addActionListener(new java.awt.event.ActionListener() {
+        delete_member.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delete_buttonActionPerformed(evt);
+                delete_memberActionPerformed(evt);
             }
         });
 
@@ -356,9 +356,9 @@ private void startClock() {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(add_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(update_button, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                    .addComponent(delete_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(add_member, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(update_member, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(delete_member, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -371,11 +371,11 @@ private void startClock() {
                 .addGap(64, 64, 64)
                 .addComponent(jLabel14)
                 .addGap(18, 18, 18)
-                .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(add_member, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(update_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(update_member, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(delete_member, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(677, Short.MAX_VALUE))
         );
 
@@ -528,33 +528,33 @@ private void startClock() {
         this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
 
-    private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
+    private void add_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_memberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_add_buttonActionPerformed
+    }//GEN-LAST:event_add_memberActionPerformed
 
-    private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
+    private void update_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_memberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_update_buttonActionPerformed
+    }//GEN-LAST:event_update_memberActionPerformed
 
-    private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
+    private void delete_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_memberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_delete_buttonActionPerformed
+    }//GEN-LAST:event_delete_memberActionPerformed
 
-    private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
+    private void add_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_memberMouseClicked
        add_form a = new add_form();
        a.setVisible(true);
 
-    }//GEN-LAST:event_add_buttonMouseClicked
+    }//GEN-LAST:event_add_memberMouseClicked
 
-    private void update_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_buttonMouseClicked
+    private void update_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_memberMouseClicked
         update_form a = new update_form();
         a.setVisible(true);
-    }//GEN-LAST:event_update_buttonMouseClicked
+    }//GEN-LAST:event_update_memberMouseClicked
 
-    private void delete_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_buttonMouseClicked
+    private void delete_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_memberMouseClicked
        delete_confirmation a = new delete_confirmation();
        a.setVisible(true);
-    }//GEN-LAST:event_delete_buttonMouseClicked
+    }//GEN-LAST:event_delete_memberMouseClicked
 
     /**
      * @param args the command line arguments
@@ -583,9 +583,9 @@ private void startClock() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Dashboard;
-    private javax.swing.JButton add_button;
+    private javax.swing.JButton add_member;
     private javax.swing.JLabel dateTimeLabel;
-    private javax.swing.JButton delete_button;
+    private javax.swing.JButton delete_member;
     private javax.swing.JLabel fullname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -615,7 +615,7 @@ private void startClock() {
     private javax.swing.JTable resourceTable;
     private javax.swing.JButton search_button;
     private javax.swing.JTextField searchbar;
-    private javax.swing.JButton update_button;
+    private javax.swing.JButton update_member;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

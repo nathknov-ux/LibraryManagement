@@ -533,7 +533,7 @@ private void startClock() {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void add_staffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_staffMouseClicked
-        add_form a = new add_form();
+        add_form_staff a = new add_form_staff();
         a.setVisible(true);
     }//GEN-LAST:event_add_staffMouseClicked
 

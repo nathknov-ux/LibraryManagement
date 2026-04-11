@@ -150,7 +150,7 @@
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="member_id" min="-2" pref="221" max="-2" attributes="0"/>
+                              <Component id="staff_id" min="-2" pref="221" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
@@ -163,34 +163,34 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="email2" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="password_staff" min="-2" pref="221" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="email1" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="username_staff" min="-2" pref="221" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="name" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="name_staff" min="-2" pref="221" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="surname" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="surname_staff" min="-2" pref="221" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="email" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="email_staff" min="-2" pref="221" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Component id="search_button" min="-2" pref="248" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="email3" min="-2" pref="221" max="-2" attributes="0"/>
+                                      <Component id="role_staff" min="-2" pref="221" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -207,37 +207,37 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="member_id" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="staff_id" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="surname" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="surname_staff" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="name" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="name_staff" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="email" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="email_staff" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="email1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="username_staff" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="email2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="password_staff" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="email3" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="role_staff" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -264,7 +264,7 @@
             <Property name="text" type="java.lang.String" value="Staff ID: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="member_id">
+        <Component class="javax.swing.JTextField" name="staff_id">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -277,7 +277,7 @@
             <Property name="text" type="java.lang.String" value="Surname: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="surname">
+        <Component class="javax.swing.JTextField" name="surname_staff">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -287,7 +287,7 @@
             <Property name="text" type="java.lang.String" value="Name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="name">
+        <Component class="javax.swing.JTextField" name="name_staff">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -297,7 +297,7 @@
             <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="email">
+        <Component class="javax.swing.JTextField" name="email_staff">
         </Component>
         <Component class="javax.swing.JButton" name="search_button">
           <Properties>
@@ -327,7 +327,7 @@
             <Property name="text" type="java.lang.String" value="Username:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="email1">
+        <Component class="javax.swing.JTextField" name="username_staff">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
@@ -337,7 +337,7 @@
             <Property name="text" type="java.lang.String" value="Password:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="email2">
+        <Component class="javax.swing.JTextField" name="password_staff">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
@@ -347,7 +347,7 @@
             <Property name="text" type="java.lang.String" value="Role:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="email3">
+        <Component class="javax.swing.JTextField" name="role_staff">
         </Component>
       </SubComponents>
     </Container>
