@@ -34,8 +34,8 @@ public class ResourceCopy {
     public int getResourceId()               { return resourceId; }
     public void setResourceId(int id)        { this.resourceId = resourceId; }
 
-    public ResourceStatus getResourceStatus()               { return status; }
-    public void setResourceStatus(ResourceStatus rs)        { this.barcode = barcode; }
+    public ResourceStatus getStatus()               { return status; }
+    public void setStatus(ResourceStatus rs)        { this.barcode = barcode; }
 
     public LocalDateTime getAcquiredAt()  { return acquiredAt; }
     public void setAcquiredAt (LocalDateTime ldt)        { this.acquiredAt = acquiredAt; }

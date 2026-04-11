@@ -724,6 +724,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="BOOKS"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="books_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -741,6 +744,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="DISSERTATION"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diss_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -758,6 +764,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="GOVERNMENT DOCUMENTS"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="govdocs_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -775,6 +784,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="JOURNAL"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="journal_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -792,6 +804,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="MAP"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="map_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -809,6 +824,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="MAGAZINE"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="magazine_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -826,6 +844,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="NEWSPAPER"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="news_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -843,6 +864,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="RESEARCH PAPER"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="research_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -860,6 +884,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="OTHERS"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="others_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -877,6 +904,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="THESIS"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="thesis_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
@@ -932,25 +962,25 @@
                             <Component class="javax.swing.JTable" name="resourceTable">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="13" rowCount="4">
-                                    <Column editable="true" title="RESOURCE ID" type="java.lang.String"/>
-                                    <Column editable="true" title="TITLE" type="java.lang.String"/>
-                                    <Column editable="true" title="RESOURCE TYPE" type="java.lang.String"/>
-                                    <Column editable="true" title="AUTHOR" type="java.lang.String"/>
-                                    <Column editable="true" title="YEAR PUBLISHED" type="java.lang.Integer"/>
-                                    <Column editable="true" title="ISBN-ISSN" type="java.lang.String"/>
-                                    <Column editable="true" title="DEGREE LEVEL" type="java.lang.String"/>
-                                    <Column editable="true" title="STATUS" type="java.lang.String"/>
-                                    <Column editable="true" title="TOTAL COPIES" type="java.lang.Integer"/>
-                                    <Column editable="true" title="AVAILABLE COPIES" type="java.lang.Integer"/>
-                                    <Column editable="true" title="ADDED BY" type="java.lang.Integer"/>
+                                  <Table columnCount="13" rowCount="0">
+                                    <Column editable="false" title="RESOURCE ID" type="java.lang.String"/>
+                                    <Column editable="false" title="TITLE" type="java.lang.String"/>
+                                    <Column editable="false" title="RESOURCE TYPE" type="java.lang.String"/>
+                                    <Column editable="false" title="AUTHOR" type="java.lang.String"/>
+                                    <Column editable="false" title="YEAR PUBLISHED" type="java.lang.Integer"/>
+                                    <Column editable="false" title="ISBN-ISSN" type="java.lang.String"/>
+                                    <Column editable="false" title="DEGREE LEVEL" type="java.lang.String"/>
+                                    <Column editable="false" title="STATUS" type="java.lang.String"/>
+                                    <Column editable="false" title="TOTAL COPIES" type="java.lang.Integer"/>
+                                    <Column editable="false" title="AVAILABLE COPIES" type="java.lang.Integer"/>
+                                    <Column editable="false" title="ADDED BY" type="java.lang.Integer"/>
                                     <Column editable="false" title="CREATED AT" type="java.lang.String"/>
                                     <Column editable="false" title="UPDATED AT" type="java.lang.String"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="4" resizable="true">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
@@ -960,7 +990,7 @@
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="5" resizable="true">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>

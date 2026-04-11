@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+import model.ResourceCopy;
 import model.Staff;
 import model.dao.StaffDAO;
 
@@ -34,7 +36,7 @@ public class StaffController {
         s.setPassword(password);           
         s.setRole(role);    
 
-        boolean success = staffDAO.Create(s);
+        boolean success = staffDAO.create(s);
 
         if (success) {
             System.out.println("Resource added successfully.");
@@ -43,5 +45,13 @@ public class StaffController {
         }
 
         return success;
+    }
+    
+    public boolean updateStaff(Staff s) { return staffDAO.update(s); }
+    public boolean deleteStaff(int staffID)     { return staffDAO.delete(staffID); }
+ 
+    public List<Staff> getAllResources() {
+        try { return staffDAO.getAll(); }
+        catch (Exception e) { System.out.println(e.getMessage()); return null; }
     }
 }
