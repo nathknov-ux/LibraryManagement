@@ -93,7 +93,7 @@ public class Log_In extends javax.swing.JFrame {
         jLabel5.setText("SYSTEM");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 294, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo black.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log out black.png"))); // NOI18N
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 132, -1, -1));
 
         SignIn3.setBackground(new java.awt.Color(0, 0, 0));

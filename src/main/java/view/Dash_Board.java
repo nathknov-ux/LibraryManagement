@@ -104,7 +104,7 @@ private void startClock() {
         jLabel6.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/maliit.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log out white.png"))); // NOI18N
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -114,7 +114,7 @@ private void startClock() {
         log_out.setBackground(new java.awt.Color(0, 0, 0));
         log_out.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         log_out.setForeground(new java.awt.Color(255, 255, 255));
-        log_out.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log out final.png"))); // NOI18N
+        log_out.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log out white.png"))); // NOI18N
         log_out.setText("  ");
         log_out.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -297,7 +297,7 @@ private void startClock() {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
-        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile.png"))); // NOI18N
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/book black.png"))); // NOI18N
         user.setText("Name");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -493,7 +493,7 @@ private void startClock() {
                 .addComponent(jLabel4)
                 .addGap(33, 33, 33)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(39, 39, 39)
                 .addComponent(jLabel11)

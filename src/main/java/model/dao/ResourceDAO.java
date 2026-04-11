@@ -38,7 +38,7 @@ public class ResourceDAO {
     }
 
     
-    private static void insertCopies(Connection conn, Resource resource, int count) throws SQLException {
+    public static void insertCopies(Connection conn, Resource resource, int count) throws SQLException {
         int lastNumber = BarcodeUtil.getLastBarcodeNumber(conn);
  
         String sql = "INSERT INTO resource_copy (barcode, resource_id, status) VALUES (?, ?, 'available')";
