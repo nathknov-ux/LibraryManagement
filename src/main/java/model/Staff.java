@@ -34,16 +34,19 @@ public class Staff {
     public void setFullName(String fullName)        { this.fullName = fullName; }
     
     public String getEmail()               { return email; }
-    public void setEmail(String fullName)        { this.email = email; }
+    public void setEmail(String email)        { this.email = email; }
     
     public String getUsername()               { return username; }
-    public void setUsername(String fullName)        { this.username = username; }
+    public void setUsername(String username)        { this.username = username; }
     
     public String getPassword()               { return password; }
-    public void setPassword(String fullName)        { this.password = password; }
+    public void setPassword(String password)        { this.password = password; }
     
     public String getRole()               { return role; }
-    public void setRole(String fullName)        { this.role = role; }
+    public void setRole(String role)        { this.role = role; }
+    
+    public LocalDateTime getLastLogin()              { return lastLogin; }
+    public void setLastLogin(LocalDateTime lastLogin) { this.lastLogin = lastLogin; }
     
     public LocalDateTime getCreatedAt()              { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
