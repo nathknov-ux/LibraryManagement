@@ -728,6 +728,11 @@ private void startClock() {
         add_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         add_button.setForeground(new java.awt.Color(255, 255, 255));
         add_button.setText("ADD");
+        add_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_buttonMouseClicked(evt);
+            }
+        });
         add_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 add_buttonActionPerformed(evt);
@@ -1018,15 +1023,15 @@ private void startClock() {
     }//GEN-LAST:event_total_copiesActionPerformed
 
     private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
-        // TODO add your handling code here:
+       //
     }//GEN-LAST:event_delete_buttonActionPerformed
 
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_add_buttonActionPerformed
 
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_update_buttonActionPerformed
 
     private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
@@ -1072,6 +1077,10 @@ private void startClock() {
     private void others_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_others_buttonActionPerformed
         resourceTypeTable("other");
     }//GEN-LAST:event_others_buttonActionPerformed
+
+    private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
+       
+    }//GEN-LAST:event_add_buttonMouseClicked
 
     private void allResourcesTable() {
         try {
