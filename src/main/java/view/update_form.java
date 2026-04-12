@@ -203,7 +203,7 @@ public class update_form extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
-        updated_notification1 a = new updated_notification1();
+        updated_notification a = new updated_notification();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_search_buttonMouseClicked

@@ -9,14 +9,14 @@ package view;
  * @author A
  */
 import java.awt.Color;
-public class deletestaff_confirmation extends javax.swing.JFrame {
+public class delete_member extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(deletestaff_confirmation.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(delete_member.class.getName());
 
     /**
      * Creates new form delete_confirmation
      */
-    public deletestaff_confirmation() {
+    public delete_member() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -67,7 +67,7 @@ public class deletestaff_confirmation extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        jLabel1.setText("Are you sure you want to delete staff?");
+        jLabel1.setText("Are you sure you want to delete member?");
 
         search_button.setBackground(new java.awt.Color(0, 0, 0));
         search_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
@@ -76,6 +76,9 @@ public class deletestaff_confirmation extends javax.swing.JFrame {
         search_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 search_buttonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                search_buttonMouseEntered(evt);
             }
         });
 
@@ -86,22 +89,23 @@ public class deletestaff_confirmation extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(43, 43, 43))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(search_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(67, 67, 67)
+                .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(search_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(search_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,6 +137,10 @@ public class deletestaff_confirmation extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_search_buttonMouseClicked
 
+    private void search_buttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_buttonMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -155,7 +163,7 @@ public class deletestaff_confirmation extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new deletestaff_confirmation().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new delete_member().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

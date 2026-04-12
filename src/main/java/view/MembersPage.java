@@ -552,7 +552,7 @@ private void startClock() {
     }//GEN-LAST:event_update_memberMouseClicked
 
     private void delete_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_memberMouseClicked
-       delete_confirmation a = new delete_confirmation();
+       delete_member a = new delete_member();
        a.setVisible(true);
     }//GEN-LAST:event_delete_memberMouseClicked
 
