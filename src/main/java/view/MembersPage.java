@@ -556,7 +556,6 @@ private void startClock() {
     private void add_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_memberActionPerformed
         int lastID = (int) memberTable.getValueAt(0, 0);
         new add_form(this, lastID).setVisible(true);
-        
     }//GEN-LAST:event_add_memberActionPerformed
 
     private void update_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_memberActionPerformed
