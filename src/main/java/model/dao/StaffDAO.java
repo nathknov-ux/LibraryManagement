@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import model.Member;
 import model.Staff;
 import util.DBConnection;
 
@@ -30,7 +31,7 @@ public class StaffDAO {
         return m;
     }
 
-    public boolean Create(Staff s) {
+    public boolean create(Staff s) {
         String qry = "INSERT INTO resource (full_name, email, username, password, role) VALUES (?,?,?,?,?)";
        
        try {
@@ -88,6 +89,50 @@ public class StaffDAO {
         }
         return list;
     }
-
     
+    public boolean update(Staff m) {
+        String sql = "UPDATE staff SET full_name = ?, email = ?, usermame = ? " +
+            "WHERE staff_id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setString(1, m.getFullName());
+            ps.setString(2, m.getEmail());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Update failed: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean updatePassword(Staff m) {
+        String sql = "UPDATE staff SET password = ? " +
+            "WHERE staff_id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setString(1, m.getPassword());
+            ps.setString(2, m.getEmail());
+            ps.setInt(3, m.getStaffID());
+            
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Update failed: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean delete(int id) {
+        
+        String sql = "DELETE FROM staff WHERE staff_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Delete failed: " + e.getMessage());
+            return false;
+        }
+    }
 }
