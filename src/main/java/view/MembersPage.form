@@ -645,14 +645,14 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="resourceTable">
+                        <Component class="javax.swing.JTable" name="memberTable">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="4" rowCount="4">
-                                <Column editable="true" title="MEMBER ID" type="java.lang.Integer"/>
-                                <Column editable="true" title="FULL NAME" type="java.lang.String"/>
-                                <Column editable="true" title="EMAIL" type="java.lang.String"/>
-                                <Column editable="true" title="DATE REGISTED" type="java.lang.String"/>
+                                <Column editable="false" title="MEMBER ID" type="java.lang.Integer"/>
+                                <Column editable="false" title="FULL NAME" type="java.lang.String"/>
+                                <Column editable="false" title="EMAIL" type="java.lang.String"/>
+                                <Column editable="false" title="DATE REGISTED" type="java.lang.String"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -720,6 +720,9 @@
                       </Layout>
                       <SubComponents>
                         <Component class="javax.swing.JTextField" name="searchbar">
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchbarActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="search_button">
                           <Properties>
@@ -734,6 +737,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="SEARCH"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="search_buttonActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); search_button.setOpaque(false)"/>
                           </AuxValues>

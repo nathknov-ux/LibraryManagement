@@ -37,7 +37,7 @@ public class MemberDAO {
  
     public List<Member> getAll() throws SQLException {
         List<Member> list = new ArrayList<>();
-        String sql = "SELECT * FROM members ORDER BY full_name";
+        String sql = "SELECT * FROM members ORDER BY member_id DESC";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {

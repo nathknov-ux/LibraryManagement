@@ -34,10 +34,21 @@ public class MemberController {
     }
     
     public boolean updateMember(Member r) { return memberDAO.update(r); }
-    public boolean deleteResource(int id)     { return memberDAO.delete(id); }
+    public boolean deleteMember(int id)     { return memberDAO.delete(id); }
  
-    public List<Member> getAllResources() {
+    
+    public List<Member> getAllMembers() {
         try { return memberDAO.getAll(); }
         catch (Exception e) { System.out.println(e.getMessage()); return null; }
+    }
+    
+    public List<Member> search(String keyword) {
+        try { return memberDAO.search(keyword); }
+        catch (Exception e) { return List.of(); }
+    }
+    
+    public Member getMemberById(int id) {
+        try { return memberDAO.getById(id); }
+        catch (Exception e) { return null; }
     }
 }

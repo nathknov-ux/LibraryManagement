@@ -9,7 +9,10 @@ package view;
  * @author A
  */
 import java.awt.Color;
+import model.Member;
+
 public class delete_member extends javax.swing.JFrame {
+
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(delete_member.class.getName());
 
@@ -17,8 +20,19 @@ public class delete_member extends javax.swing.JFrame {
      * Creates new form delete_confirmation
      */
     public delete_member() {
+
+        initComponents();
+    }
+
+    private Member member;
+    private MembersPage parent;
+    // Constructor called from MembersPage
+    public delete_member(MembersPage parent, Member member) {
+        this.parent = parent;
+        this.member = member;
         initComponents();
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -34,8 +48,8 @@ public class delete_member extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        search_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); search_button.setOpaque(false);
-        search_button1 = (javax.swing.JButton) new rounded_buttons(20, Color.WHITE); search_button.setOpaque(false);
+        yesBtn = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); yesBtn.setOpaque(false);
+        noBtn = (javax.swing.JButton) new rounded_buttons(20, Color.WHITE); yesBtn.setOpaque(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,21 +83,23 @@ public class delete_member extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setText("Are you sure you want to delete member?");
 
-        search_button.setBackground(new java.awt.Color(0, 0, 0));
-        search_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        search_button.setForeground(new java.awt.Color(255, 255, 255));
-        search_button.setText("YES");
-        search_button.addMouseListener(new java.awt.event.MouseAdapter() {
+        yesBtn.setBackground(new java.awt.Color(0, 0, 0));
+        yesBtn.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        yesBtn.setForeground(new java.awt.Color(255, 255, 255));
+        yesBtn.setText("YES");
+        yesBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                search_buttonMouseClicked(evt);
+                yesBtnMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                search_buttonMouseEntered(evt);
+                yesBtnMouseEntered(evt);
             }
         });
+        yesBtn.addActionListener(this::yesBtnActionPerformed);
 
-        search_button1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        search_button1.setText("NO");
+        noBtn.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        noBtn.setText("NO");
+        noBtn.addActionListener(this::noBtnActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,9 +111,9 @@ public class delete_member extends javax.swing.JFrame {
                 .addGap(43, 43, 43))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(yesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(search_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(noBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -107,8 +123,8 @@ public class delete_member extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(search_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(yesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(noBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -131,15 +147,37 @@ public class delete_member extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
-        deleted_notification a = new deleted_notification();
-        a.setVisible(true);
+    private void yesBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yesBtnMouseClicked
+       if (member == null) {
         this.dispose();
-    }//GEN-LAST:event_search_buttonMouseClicked
+        return;
+        }
 
-    private void search_buttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseEntered
+        controller.MemberController mc = new controller.MemberController();
+        boolean ok = mc.deleteMember(member.getMemberId());
+
+        if (ok) {
+            deleted_notification a = new deleted_notification();
+            a.setVisible(true);
+            if (parent != null) parent.allMembersTable(); // refresh table
+            this.dispose();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Delete failed.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_yesBtnMouseClicked
+
+    private void yesBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yesBtnMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_search_buttonMouseEntered
+    }//GEN-LAST:event_yesBtnMouseEntered
+
+    private void yesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yesBtnActionPerformed
+
+    private void noBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_noBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,7 +209,8 @@ public class delete_member extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton search_button;
-    private javax.swing.JButton search_button1;
+    private javax.swing.JButton noBtn;
+    private javax.swing.JButton yesBtn;
     // End of variables declaration//GEN-END:variables
 }
+
