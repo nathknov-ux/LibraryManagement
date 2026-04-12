@@ -186,11 +186,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-<<<<<<< HEAD
-                      <Image iconType="3" name="/images/log out white.png"/>
-=======
                       <Image iconType="3" name="/images/logo white.png"/>
->>>>>>> 3aec0ac62fd00bb310ea3e69bdf3da92df84f33a
                     </Property>
                   </Properties>
                   <Events>
@@ -760,7 +756,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JPanel) new All_Rounded(40, Color.WHITE); jPanel5.setOpaque(false)&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JPanel) new All_Rounded(40, Color.WHITE); jPanel5.setOpaque(false);"/>
                       </AuxValues>
 
                       <Layout>
@@ -1154,13 +1150,6 @@
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                              <EmptySpace pref="315" max="32767" attributes="0"/>
-                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-=======
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
@@ -1225,7 +1214,6 @@
                                   <Component id="others_total" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="106" max="32767" attributes="0"/>
->>>>>>> 3aec0ac62fd00bb310ea3e69bdf3da92df84f33a
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1261,7 +1249,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JPanel) new All_Rounded(40, Color.BLACK); jPanel5.setOpaque(false)&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JPanel) new All_Rounded(40, Color.BLACK); jPanel5.setOpaque(false);"/>
                       </AuxValues>
 
                       <Layout>

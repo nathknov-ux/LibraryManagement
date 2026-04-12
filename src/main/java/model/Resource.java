@@ -41,7 +41,7 @@ public class Resource {
     private ResourceStatus status;      // NOT NULL 
     private int totalCopies;
     private int availableCopies;
-    private int addedBy;
+    private Integer addedBy;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -104,7 +104,7 @@ public class Resource {
     public int getAvailableCopies()              { return availableCopies; }
     public void setAvailableCopies(int total)    { this.availableCopies = total; }
 
-    public int getAddedBy()                  { return addedBy; }
+    public Integer getAddedBy()                  { return addedBy; }
     public void setAddedBy(int addedBy)      { this.addedBy = addedBy; }
 
     public LocalDateTime getCreatedAt()              { return createdAt; }

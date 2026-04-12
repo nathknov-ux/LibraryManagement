@@ -212,6 +212,10 @@ public class update_form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
+        
+    }//GEN-LAST:event_search_buttonMouseClicked
+
     private void updateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateBtnMouseClicked
         
     }//GEN-LAST:event_updateBtnMouseClicked
@@ -226,13 +230,14 @@ public class update_form extends javax.swing.JFrame {
         member.setFullName(fullName);
         member.setEmail(email.getText());
         if (mc.updateMember(member)) {
-            updated_notification1 a = new updated_notification1();
+            updated_notification a = new updated_notification();
             a.setVisible(true);
             if (parent != null) parent.allMembersTable(); // refresh table
             this.dispose();
             
         }
     }//GEN-LAST:event_updateBtnActionPerformed
+
 
     /**
      * @param args the command line arguments

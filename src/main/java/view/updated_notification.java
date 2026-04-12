@@ -9,14 +9,14 @@ package view;
  * @author A
  */
 import java.awt.Color;
-public class updated_notification1 extends javax.swing.JFrame {
+public class updated_notification extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(updated_notification1.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(updated_notification.class.getName());
 
     /**
      * Creates new form delete_confirmation
      */
-    public updated_notification1() {
+    public updated_notification() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -151,7 +151,7 @@ public class updated_notification1 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new updated_notification1().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new updated_notification().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

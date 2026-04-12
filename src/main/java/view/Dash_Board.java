@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
 import java.awt.Color;
+import util.Session;
 /**
  *
  * @author A
@@ -21,11 +22,13 @@ public class Dash_Board extends javax.swing.JFrame {
      * Creates new form Dash_Board
      */
     public Dash_Board() {
-    initComponents();
+        initComponents();
+    fullname.setText(Session.getFullName());
+    position.setText(Session.getRole().toUpperCase());
     startClock();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-}
-   
+    }
+
 
 private void startClock() {
     Timer timer = new Timer(1000, e -> {
@@ -76,8 +79,7 @@ private void startClock() {
         jLabel8 = new javax.swing.JLabel();
         jPanel13 = (javax.swing.JPanel) new RoundedPanel(40, Color.BLACK); jPanel3.setOpaque(false);
         jLabel9 = new javax.swing.JLabel();
-        jPanel16 = (javax.swing.JPanel) new All_Rounded(40, Color.WHITE); jPanel5.setOpaque(false)
-        ;
+        jPanel16 = (javax.swing.JPanel) new All_Rounded(40, Color.WHITE); jPanel5.setOpaque(false);
         borrowed_resources = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -106,8 +108,7 @@ private void startClock() {
         jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel15 = (javax.swing.JPanel) new All_Rounded(40, Color.BLACK); jPanel5.setOpaque(false)
-        ;
+        jPanel15 = (javax.swing.JPanel) new All_Rounded(40, Color.BLACK); jPanel5.setOpaque(false);
         available_resources = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -349,7 +350,7 @@ private void startClock() {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile.png"))); // NOI18N
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/book black.png"))); // NOI18N
         jPanel3.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 40));
 
         fullname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
