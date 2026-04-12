@@ -136,7 +136,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                          <Component id="search_button" min="-2" pref="248" max="-2" attributes="0"/>
+                          <Component id="updateBtn" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -202,7 +202,7 @@
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="search_button" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="updateBtn" min="-2" pref="47" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -229,6 +229,9 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="member_idActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -260,7 +263,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="email">
         </Component>
-        <Component class="javax.swing.JButton" name="search_button">
+        <Component class="javax.swing.JButton" name="updateBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -274,10 +277,11 @@
             <Property name="text" type="java.lang.String" value="UPDATE"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="search_buttonMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="updateBtnMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateBtnActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); search_button.setOpaque(false)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); updateBtn.setOpaque(false)"/>
           </AuxValues>
         </Component>
       </SubComponents>

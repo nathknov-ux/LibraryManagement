@@ -4,11 +4,18 @@
  */
 package view;
 
+import controller.MemberController;
 import javax.swing.JFrame;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.SwingWorker;
+import javax.swing.table.DefaultTableModel;
+import model.Member;
+import model.Resource;
+import model.dao.ResourceDAO;
 /**
  *
  * @author A
@@ -16,12 +23,11 @@ import java.awt.Color;
 public class MembersPage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MembersPage.class.getName());
-
-    /**
-     * Creates new form Dash_Board
-     */
+    private String lastID;
+    
     public MembersPage() {
     initComponents();
+    allMembersTable();
     startClock();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 }
@@ -75,7 +81,7 @@ private void startClock() {
         jLabel14 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        resourceTable = new javax.swing.JTable();
+        memberTable = new javax.swing.JTable();
         jPanel18 = new javax.swing.JPanel();
         searchbar = new javax.swing.JTextField();
         search_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); search_button.setOpaque(false);
@@ -383,7 +389,7 @@ private void startClock() {
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
 
-        resourceTable.setModel(new javax.swing.table.DefaultTableModel(
+        memberTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -397,19 +403,37 @@ private void startClock() {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(resourceTable);
+        jScrollPane1.setViewportView(memberTable);
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
+
+        searchbar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchbarActionPerformed(evt);
+            }
+        });
 
         search_button.setBackground(new java.awt.Color(0, 0, 0));
         search_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         search_button.setForeground(new java.awt.Color(255, 255, 255));
         search_button.setText("SEARCH");
+        search_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -529,7 +553,9 @@ private void startClock() {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void add_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_memberActionPerformed
-        // TODO add your handling code here:
+        int lastID = (int) memberTable.getValueAt(0, 0);
+        new add_form(this, lastID).setVisible(true);
+        
     }//GEN-LAST:event_add_memberActionPerformed
 
     private void update_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_memberActionPerformed
@@ -541,24 +567,96 @@ private void startClock() {
     }//GEN-LAST:event_delete_memberActionPerformed
 
     private void add_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_memberMouseClicked
-       add_form a = new add_form();
-       a.setVisible(true);
-
+       
     }//GEN-LAST:event_add_memberMouseClicked
 
     private void update_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_memberMouseClicked
-        update_form a = new update_form();
+        Member selected = getSelectedMember();
+        if (selected == null) return;
+
+        update_form a = new update_form(this, selected);
         a.setVisible(true);
     }//GEN-LAST:event_update_memberMouseClicked
 
     private void delete_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_memberMouseClicked
-       delete_confirmation a = new delete_confirmation();
-       a.setVisible(true);
+       Member selected = getSelectedMember();
+        if (selected == null) return;
+
+        delete_confirmation a = new delete_confirmation(this, selected);
+        a.setVisible(true);
     }//GEN-LAST:event_delete_memberMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
+       doSearch();
+    }//GEN-LAST:event_searchbarActionPerformed
+
+    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
+       doSearch();
+    }//GEN-LAST:event_search_buttonActionPerformed
+    MemberController members = new MemberController();
+    
+    private Member getSelectedMember() {
+        int row = memberTable.getSelectedRow();
+        if (row < 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a member from the table first.");
+            return null;
+        }
+        int id = (int) memberTable.getValueAt(row, 0);
+        return members.getMemberById(id);
+    }
+    
+    public void allMembersTable() {
+        try {
+            
+            List<Member> list = members.getAllMembers();
+
+            DefaultTableModel model = (DefaultTableModel) memberTable.getModel();
+            model.setRowCount(0); // clear table
+
+            for (Member r : list) {
+                model.addRow(new Object[]{
+                    r.getMemberId(),
+                    r.getFullName(),
+                    r.getEmail(),
+                    r.getDateRegistered(),
+                });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void doSearch() {
+    String keyword = searchbar.getText().trim();
+
+    new SwingWorker<List<Member>, Void>() {
+        @Override
+        protected List<Member> doInBackground() {
+            if (keyword.isEmpty()) {
+                return members.getAllMembers();       
+            } else {
+                return members.search(keyword); 
+            }
+        }
+        @Override
+        protected void done() {
+            try {
+                List<Member> list = get();
+                DefaultTableModel model = (DefaultTableModel) memberTable.getModel();
+                model.setRowCount(0); 
+                for (Member m : list) {
+                    model.addRow(new Object[]{
+                        m.getMemberId(),
+                        m.getFullName(),
+                        m.getEmail(),
+                        m.getDateRegistered()
+                    });
+                }
+            } catch (Exception ignored) {}
+        }
+    }.execute();
+}
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -611,8 +709,8 @@ private void startClock() {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable memberTable;
     private javax.swing.JLabel position;
-    private javax.swing.JTable resourceTable;
     private javax.swing.JButton search_button;
     private javax.swing.JTextField searchbar;
     private javax.swing.JButton update_member;

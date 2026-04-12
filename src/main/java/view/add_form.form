@@ -167,7 +167,7 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                  <Component id="search_button" min="-2" pref="248" max="-2" attributes="0"/>
+                  <Component id="add_button" min="-2" pref="248" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -198,7 +198,7 @@
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="53" max="32767" attributes="0"/>
-                  <Component id="search_button" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="add_button" min="-2" pref="47" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -235,6 +235,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="surname">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="surnameActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -256,7 +259,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="email">
         </Component>
-        <Component class="javax.swing.JButton" name="search_button">
+        <Component class="javax.swing.JButton" name="add_button">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -270,10 +273,11 @@
             <Property name="text" type="java.lang.String" value="ADD"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="search_buttonMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="add_buttonMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_buttonActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); search_button.setOpaque(false)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); add_button.setOpaque(false)"/>
           </AuxValues>
         </Component>
       </SubComponents>
