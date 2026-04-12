@@ -247,7 +247,7 @@ public class update_form_staff extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
-        added_notification a = new added_notification();
+        updated_notification a = new updated_notification();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_search_buttonMouseClicked

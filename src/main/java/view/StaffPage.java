@@ -294,7 +294,7 @@ private void startClock() {
         jLabel11.setText("STAFF");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1973, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1820, -1));
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -551,7 +551,7 @@ private void startClock() {
     }//GEN-LAST:event_update_staffActionPerformed
 
     private void delete_staffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_staffMouseClicked
-        delete_confirmation a = new delete_confirmation();
+        delete_member a = new delete_member();
         a.setVisible(true);
     }//GEN-LAST:event_delete_staffMouseClicked
 

@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.Resource;
 import model.dao.ResourceDAO;
+import view.delete_member;
 /**
  *
  * @author A
@@ -579,11 +580,13 @@ private void startClock() {
     }//GEN-LAST:event_update_memberMouseClicked
 
     private void delete_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_memberMouseClicked
+
        Member selected = getSelectedMember();
         if (selected == null) return;
 
-        delete_confirmation a = new delete_confirmation(this, selected);
+        delete_member a = new delete_member(this, selected);
         a.setVisible(true);
+
     }//GEN-LAST:event_delete_memberMouseClicked
 
     private void searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbarActionPerformed
