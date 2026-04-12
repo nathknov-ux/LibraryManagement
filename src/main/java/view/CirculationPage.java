@@ -72,7 +72,7 @@ private void startClock() {
         jLabel14 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        resourceTable = new javax.swing.JTable();
+        circulationTable = new javax.swing.JTable();
         jPanel18 = new javax.swing.JPanel();
         searchbar = new javax.swing.JTextField();
         search_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); search_button.setOpaque(false);
@@ -339,7 +339,7 @@ private void startClock() {
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
 
-        resourceTable.setModel(new javax.swing.table.DefaultTableModel(
+        circulationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -358,7 +358,7 @@ private void startClock() {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(resourceTable);
+        jScrollPane1.setViewportView(circulationTable);
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -535,6 +535,7 @@ private void startClock() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable circulationTable;
     private javax.swing.JLabel dateTimeLabel;
     private javax.swing.JLabel fullname;
     private javax.swing.JLabel jLabel14;
@@ -557,7 +558,6 @@ private void startClock() {
     private javax.swing.JButton overdue_button;
     private javax.swing.JLabel position;
     private javax.swing.JLabel resource;
-    private javax.swing.JTable resourceTable;
     private javax.swing.JPanel resource_panel;
     private javax.swing.JPanel return_panel;
     private javax.swing.JButton returnfunc_button;

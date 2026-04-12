@@ -28,32 +28,32 @@ public class ResourcePage extends javax.swing.JFrame {
      * Creates new form Dash_Board
      */
     public ResourcePage() {
-    initComponents();
-    delete_button.setEnabled(false);
-    delete_button.setBackground(java.awt.Color.GRAY);
-    update_button.setEnabled(false);
-    update_button.setBackground(java.awt.Color.GRAY);
-    view_button.setEnabled(false);
-    view_button.setBackground(java.awt.Color.GRAY);
-    allResourcesTable();
-    startClock();
-    setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-    
-    resourceTable.getSelectionModel().addListSelectionListener(e -> {
-    if (!e.getValueIsAdjusting()) {
-        selectedRow = resourceTable.getSelectedRow();
-        boolean hasSelection = selectedRow != -1;
+        initComponents();
+        delete_button.setEnabled(false);
+        delete_button.setBackground(java.awt.Color.GRAY);
+        update_button.setEnabled(false);
+        update_button.setBackground(java.awt.Color.GRAY);
+        view_button.setEnabled(false);
+        view_button.setBackground(java.awt.Color.GRAY);
+        allResourcesTable();
+        startClock();
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
-        delete_button.setEnabled(hasSelection);
-        update_button.setEnabled(hasSelection);
-        view_button.setEnabled(hasSelection);
+        resourceTable.getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting()) {
+            selectedRow = resourceTable.getSelectedRow();
+            boolean hasSelection = selectedRow != -1;
 
-        java.awt.Color color = hasSelection ? java.awt.Color.BLACK : java.awt.Color.GRAY;
-        delete_button.setBackground(color);
-        update_button.setBackground(color);
-        view_button.setBackground(color);
-    }
-});
+            delete_button.setEnabled(hasSelection);
+            update_button.setEnabled(hasSelection);
+            view_button.setEnabled(hasSelection);
+
+            java.awt.Color color = hasSelection ? java.awt.Color.BLACK : java.awt.Color.GRAY;
+            delete_button.setBackground(color);
+            update_button.setBackground(color);
+            view_button.setBackground(color);
+        }
+    });
 }
 
 private void startClock() {

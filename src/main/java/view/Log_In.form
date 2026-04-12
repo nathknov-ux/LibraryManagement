@@ -152,11 +152,7 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-<<<<<<< HEAD
-                  <Image iconType="3" name="/images/log out black.png"/>
-=======
                   <Image iconType="3" name="/images/logo.png"/>
->>>>>>> 3aec0ac62fd00bb310ea3e69bdf3da92df84f33a
                 </Property>
               </Properties>
               <Constraints>
@@ -275,7 +271,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
-                      <Component id="SignIn2" min="-2" pref="149" max="-2" attributes="0"/>
+                      <Component id="loginBtn" min="-2" pref="149" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -294,14 +290,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="spcb" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="SignIn2" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="loginBtn" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="SignIn2">
+            <Component class="javax.swing.JButton" name="loginBtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="14" style="0"/>
@@ -309,7 +305,7 @@
                 <Property name="text" type="java.lang.String" value="LOG IN"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SignIn2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginBtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">

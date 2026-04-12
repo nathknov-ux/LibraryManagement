@@ -560,11 +560,19 @@ private void startClock() {
     }//GEN-LAST:event_add_memberActionPerformed
 
     private void update_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_memberActionPerformed
-        // TODO add your handling code here:
+        Member selected = getSelectedMember();
+        if (selected == null) return;
+
+        update_form a = new update_form(this, selected);
+        a.setVisible(true);
     }//GEN-LAST:event_update_memberActionPerformed
 
     private void delete_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_memberActionPerformed
-        // TODO add your handling code here:
+        Member selected = getSelectedMember();
+        if (selected == null) return;
+
+        delete_member a = new delete_member(this, selected);
+        a.setVisible(true);
     }//GEN-LAST:event_delete_memberActionPerformed
 
     private void add_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_memberMouseClicked
@@ -572,20 +580,12 @@ private void startClock() {
     }//GEN-LAST:event_add_memberMouseClicked
 
     private void update_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_memberMouseClicked
-        Member selected = getSelectedMember();
-        if (selected == null) return;
-
-        update_form a = new update_form(this, selected);
-        a.setVisible(true);
+        
     }//GEN-LAST:event_update_memberMouseClicked
 
     private void delete_memberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_memberMouseClicked
 
-       Member selected = getSelectedMember();
-        if (selected == null) return;
-
-        delete_member a = new delete_member(this, selected);
-        a.setVisible(true);
+        
 
     }//GEN-LAST:event_delete_memberMouseClicked
 

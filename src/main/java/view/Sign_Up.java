@@ -8,6 +8,7 @@ package view;
  *
  * @author A
  */
+import controller.StaffController;
 import java.awt.Color;
 public class Sign_Up extends javax.swing.JFrame {
     
@@ -18,7 +19,7 @@ public class Sign_Up extends javax.swing.JFrame {
      */
     public Sign_Up() {
         initComponents();
-        passwords.setEchoChar((char) 0);
+        password.setEchoChar((char) 0);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
@@ -39,14 +40,15 @@ public class Sign_Up extends javax.swing.JFrame {
         jPanel3 = (javax.swing.JPanel) new RoundedPanel(40, Color.BLACK); jPanel3.setOpaque(false);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Emails = new javax.swing.JTextField();
-        UsernNames = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        role = new javax.swing.JTextField();
         SignUp2 = new javax.swing.JButton();
-        MiddleInitial = new javax.swing.JTextField();
+        middle = new javax.swing.JTextField();
         spcb = new javax.swing.JCheckBox();
-        passwords = new javax.swing.JPasswordField();
-        Surname = new javax.swing.JTextField();
-        FirstName = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
+        surname = new javax.swing.JTextField();
+        firstname = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         jPanel2 = (javax.swing.JPanel) new RoundedPanel(40, Color.WHITE); jPanel2.setOpaque(false);
         ;
         jLabel4 = new javax.swing.JLabel();
@@ -82,25 +84,25 @@ public class Sign_Up extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Please provide your credentials to sign up.");
 
-        Emails.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        Emails.setText("Email");
-        Emails.addFocusListener(new java.awt.event.FocusAdapter() {
+        email.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        email.setText("Email");
+        email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                EmailsFocusGained(evt);
+                emailFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                EmailsFocusLost(evt);
+                emailFocusLost(evt);
             }
         });
 
-        UsernNames.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        UsernNames.setText("Username");
-        UsernNames.addFocusListener(new java.awt.event.FocusAdapter() {
+        role.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        role.setText("Role");
+        role.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                UsernNamesFocusGained(evt);
+                roleFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                UsernNamesFocusLost(evt);
+                roleFocusLost(evt);
             }
         });
 
@@ -112,27 +114,27 @@ public class Sign_Up extends javax.swing.JFrame {
             }
         });
 
-        MiddleInitial.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        MiddleInitial.setText("M.I");
-        MiddleInitial.addFocusListener(new java.awt.event.FocusAdapter() {
+        middle.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        middle.setText("M.I");
+        middle.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                MiddleInitialFocusGained(evt);
+                middleFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                MiddleInitialFocusLost(evt);
+                middleFocusLost(evt);
             }
         });
-        MiddleInitial.addMouseListener(new java.awt.event.MouseAdapter() {
+        middle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MiddleInitialMouseClicked(evt);
+                middleMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                MiddleInitialMouseExited(evt);
+                middleMouseExited(evt);
             }
         });
-        MiddleInitial.addActionListener(new java.awt.event.ActionListener() {
+        middle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MiddleInitialActionPerformed(evt);
+                middleActionPerformed(evt);
             }
         });
 
@@ -147,71 +149,87 @@ public class Sign_Up extends javax.swing.JFrame {
             }
         });
 
-        passwords.setText("Password");
-        passwords.addFocusListener(new java.awt.event.FocusAdapter() {
+        password.setText("Password");
+        password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                passwordsFocusGained(evt);
+                passwordFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                passwordsFocusLost(evt);
+                passwordFocusLost(evt);
             }
         });
-        passwords.addActionListener(new java.awt.event.ActionListener() {
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordsActionPerformed(evt);
+                passwordActionPerformed(evt);
             }
         });
 
-        Surname.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        Surname.setText("Surname");
-        Surname.addFocusListener(new java.awt.event.FocusAdapter() {
+        surname.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        surname.setText("Surname");
+        surname.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                SurnameFocusGained(evt);
+                surnameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                SurnameFocusLost(evt);
+                surnameFocusLost(evt);
             }
         });
-        Surname.addMouseListener(new java.awt.event.MouseAdapter() {
+        surname.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SurnameMouseClicked(evt);
+                surnameMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                SurnameMouseExited(evt);
+                surnameMouseExited(evt);
             }
         });
-        Surname.addActionListener(new java.awt.event.ActionListener() {
+        surname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SurnameActionPerformed(evt);
+                surnameActionPerformed(evt);
             }
         });
-        Surname.addKeyListener(new java.awt.event.KeyAdapter() {
+        surname.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                SurnameKeyPressed(evt);
+                surnameKeyPressed(evt);
             }
         });
 
-        FirstName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        FirstName.setText("First Name");
-        FirstName.addFocusListener(new java.awt.event.FocusAdapter() {
+        firstname.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        firstname.setText("First Name");
+        firstname.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                FirstNameFocusGained(evt);
+                firstnameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                FirstNameFocusLost(evt);
+                firstnameFocusLost(evt);
             }
         });
-        FirstName.addMouseListener(new java.awt.event.MouseAdapter() {
+        firstname.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                FirstNameMouseClicked(evt);
+                firstnameMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                FirstNameMouseExited(evt);
+                firstnameMouseExited(evt);
             }
         });
-        FirstName.addActionListener(new java.awt.event.ActionListener() {
+        firstname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FirstNameActionPerformed(evt);
+                firstnameActionPerformed(evt);
+            }
+        });
+
+        username.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        username.setText("Username");
+        username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usernameFocusLost(evt);
+            }
+        });
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
             }
         });
 
@@ -220,63 +238,62 @@ public class Sign_Up extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(211, 211, 211)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 79, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(spcb)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jLabel1)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                        .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(middle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SignUp2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(174, 174, 174))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(spcb)
-                            .addComponent(UsernNames, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                            .addComponent(passwords, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Emails, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(80, 80, 80))
+                        .addComponent(jLabel2)
+                        .addGap(126, 126, 126))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(Surname, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MiddleInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))))
+                        .addComponent(SignUp2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(177, 177, 177))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(183, 183, 183)
+                .addGap(158, 158, 158)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(24, 24, 24)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MiddleInitial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Surname, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(Emails, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(UsernNames, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(passwords, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(spcb)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(middle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spcb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SignUp2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 200, -1, -1));
+        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 200, -1, 680));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -322,42 +339,62 @@ public class Sign_Up extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SignUp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUp2ActionPerformed
-        Log_In l = new Log_In();
-        l.setVisible(true);
-        this.dispose();
+        String mi = middle.getText().trim().equals("M.I") ? "" : " " + middle.getText().trim();
+        String fullname = surname.getText().trim().toUpperCase() + ", "
+                        + firstname.getText().trim() + mi;
+
+        StaffController sc = new StaffController();
+        boolean ok = sc.addStaff(
+            fullname,
+            email.getText().trim(),
+            username.getText().trim(),
+            String.valueOf(password.getPassword()),
+            role.getText().trim()
+        );
+
+        if (ok) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Account created successfully!");
+            Log_In l = new Log_In();
+            l.setVisible(true);
+            this.dispose();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Sign up failed. Username may already exist.",
+                "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_SignUp2ActionPerformed
 
     private void spcbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spcbActionPerformed
         if (spcb.isSelected()) {
-        passwords.setEchoChar((char) 0); // Shows password
+        password.setEchoChar((char) 0);
     } else {
-        passwords.setEchoChar('•'); // Hides password
+        password.setEchoChar('•'); 
     }
     }//GEN-LAST:event_spcbActionPerformed
 
-    private void MiddleInitialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiddleInitialMouseClicked
+    private void middleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_middleMouseClicked
         
-    }//GEN-LAST:event_MiddleInitialMouseClicked
+    }//GEN-LAST:event_middleMouseClicked
 
-    private void EmailsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailsFocusGained
-        if (Emails.getText().equals("Email")) {
-            Emails.setText("");
+    private void emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusGained
+        if (email.getText().equals("Email")) {
+            email.setText("");
     }
-    }//GEN-LAST:event_EmailsFocusGained
+    }//GEN-LAST:event_emailFocusGained
 
-    private void UsernNamesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernNamesFocusGained
-        if (UsernNames.getText().equals("Username")) {
-            UsernNames.setText("");
+    private void roleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roleFocusGained
+        if (role.getText().equals("Role")) {
+            role.setText("");
+        }
+    }//GEN-LAST:event_roleFocusGained
+
+    private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
+
+        if (String.valueOf(password.getPassword()).equals("Password")) {
+        password.setText("");
+        password.setEchoChar('•');
     }
-    }//GEN-LAST:event_UsernNamesFocusGained
-
-    private void passwordsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordsFocusGained
-
-        if (String.valueOf(passwords.getPassword()).equals("Password")) {
-        passwords.setText("");
-        passwords.setEchoChar('•');
-    }
-    }//GEN-LAST:event_passwordsFocusGained
+    }//GEN-LAST:event_passwordFocusGained
 
     private void SignIn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignIn2ActionPerformed
         Log_In a = new Log_In();
@@ -365,102 +402,118 @@ public class Sign_Up extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_SignIn2ActionPerformed
 
-    private void passwordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordsActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordsActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
 
-    private void MiddleInitialFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MiddleInitialFocusLost
-        if (String.valueOf(MiddleInitial.getText()).isEmpty()) {
-        MiddleInitial.setText("M.I");
+    private void middleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_middleFocusLost
+        if (String.valueOf(middle.getText()).isEmpty()) {
+        middle.setText("M.I");
     }
-    }//GEN-LAST:event_MiddleInitialFocusLost
+    }//GEN-LAST:event_middleFocusLost
 
-    private void passwordsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordsFocusLost
-        if (String.valueOf(passwords.getPassword()).isEmpty()) {
-        passwords.setText("Password");
-        passwords.setEchoChar((char) 0);
+    private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
+        if (String.valueOf(password.getPassword()).isEmpty()) {
+        password.setText("Password");
+        password.setEchoChar((char) 0);
     }
-    }//GEN-LAST:event_passwordsFocusLost
+    }//GEN-LAST:event_passwordFocusLost
 
-    private void MiddleInitialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiddleInitialMouseExited
+    private void middleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_middleMouseExited
       
-    }//GEN-LAST:event_MiddleInitialMouseExited
+    }//GEN-LAST:event_middleMouseExited
 
-    private void MiddleInitialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MiddleInitialFocusGained
-            if (MiddleInitial.getText().equals("M.I")) {
-            MiddleInitial.setText("");
+    private void middleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_middleFocusGained
+            if (middle.getText().equals("M.I")) {
+            middle.setText("");
     }
-    }//GEN-LAST:event_MiddleInitialFocusGained
+    }//GEN-LAST:event_middleFocusGained
 
-    private void SurnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SurnameFocusGained
+    private void surnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_surnameFocusGained
        
-    }//GEN-LAST:event_SurnameFocusGained
+    }//GEN-LAST:event_surnameFocusGained
 
-    private void SurnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SurnameFocusLost
-        if (String.valueOf(Surname.getText()).isEmpty()) {
-        Surname.setText("Surname");
+    private void surnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_surnameFocusLost
+        if (String.valueOf(surname.getText()).isEmpty()) {
+        surname.setText("Surname");
         }
-    }//GEN-LAST:event_SurnameFocusLost
+    }//GEN-LAST:event_surnameFocusLost
 
-    private void SurnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SurnameMouseClicked
-       if(Surname.getText().equals("Surname")) {
-           Surname.setText("");
+    private void surnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_surnameMouseClicked
+       if(surname.getText().equals("Surname")) {
+           surname.setText("");
        }
-    }//GEN-LAST:event_SurnameMouseClicked
+    }//GEN-LAST:event_surnameMouseClicked
 
-    private void SurnameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SurnameMouseExited
+    private void surnameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_surnameMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_SurnameMouseExited
+    }//GEN-LAST:event_surnameMouseExited
 
-    private void FirstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FirstNameFocusGained
-            if(FirstName.getText().equals("First Name")) {
-           FirstName.setText("");
+    private void firstnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstnameFocusGained
+            if(firstname.getText().equals("First Name")) {
+           firstname.setText("");
        }
-    }//GEN-LAST:event_FirstNameFocusGained
+    }//GEN-LAST:event_firstnameFocusGained
 
-    private void FirstNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FirstNameFocusLost
-        if (FirstName.getText().isEmpty()) {
-        FirstName.setText("First Name");
+    private void firstnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstnameFocusLost
+        if (firstname.getText().isEmpty()) {
+        firstname.setText("First Name");
     }
-    }//GEN-LAST:event_FirstNameFocusLost
+    }//GEN-LAST:event_firstnameFocusLost
 
-    private void FirstNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FirstNameMouseClicked
+    private void firstnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstnameMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_FirstNameMouseClicked
+    }//GEN-LAST:event_firstnameMouseClicked
 
-    private void FirstNameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FirstNameMouseExited
+    private void firstnameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstnameMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_FirstNameMouseExited
+    }//GEN-LAST:event_firstnameMouseExited
 
-    private void MiddleInitialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiddleInitialActionPerformed
+    private void middleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_middleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MiddleInitialActionPerformed
+    }//GEN-LAST:event_middleActionPerformed
 
-    private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
+    private void firstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FirstNameActionPerformed
+    }//GEN-LAST:event_firstnameActionPerformed
 
-    private void SurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SurnameActionPerformed
+    private void surnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SurnameActionPerformed
+    }//GEN-LAST:event_surnameActionPerformed
 
-    private void EmailsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailsFocusLost
-       if (Emails.getText().isEmpty()) {
-        Emails.setText("Email");
+    private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
+       if (email.getText().isEmpty()) {
+        email.setText("Email");
     }
-    }//GEN-LAST:event_EmailsFocusLost
+    }//GEN-LAST:event_emailFocusLost
 
-    private void UsernNamesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernNamesFocusLost
-        if (UsernNames.getText().isEmpty()) {
-        UsernNames.setText("Username");
+    private void roleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_roleFocusLost
+        if (role.getText().isEmpty()) {
+        role.setText("Role");
     }
-    }//GEN-LAST:event_UsernNamesFocusLost
+    }//GEN-LAST:event_roleFocusLost
 
-    private void SurnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SurnameKeyPressed
-        if (Surname.getText().equals("Surname")) {
-        Surname.setText("");
+    private void surnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_surnameKeyPressed
+        if (surname.getText().equals("Surname")) {
+        surname.setText("");
     }
-    }//GEN-LAST:event_SurnameKeyPressed
+    }//GEN-LAST:event_surnameKeyPressed
+
+    private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
+        if (role.getText().equals("Username")) {
+            role.setText("");
+        }
+    }//GEN-LAST:event_usernameFocusGained
+
+    private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
+        if (email.getText().isEmpty()) {
+        email.setText("Username");
+    }
+    }//GEN-LAST:event_usernameFocusLost
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -483,18 +536,15 @@ public class Sign_Up extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(() -> new Sign_Up().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Emails;
-    private javax.swing.JTextField FirstName;
-    private javax.swing.JTextField MiddleInitial;
     private javax.swing.JButton SignIn2;
     private javax.swing.JButton SignUp2;
-    private javax.swing.JTextField Surname;
-    private javax.swing.JTextField UsernNames;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField firstname;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -509,7 +559,11 @@ public class Sign_Up extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField passwords;
+    private javax.swing.JTextField middle;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JTextField role;
     private javax.swing.JCheckBox spcb;
+    private javax.swing.JTextField surname;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

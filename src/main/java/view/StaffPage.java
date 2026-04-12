@@ -4,11 +4,19 @@
  */
 package view;
 
+import controller.StaffController;
 import javax.swing.JFrame;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Member;
+import model.Resource;
+import model.Staff;
+import model.dao.ResourceDAO;
+import model.dao.StaffDAO;
 /**
  *
  * @author A
@@ -22,6 +30,7 @@ public class StaffPage extends javax.swing.JFrame {
      */
     public StaffPage() {
     initComponents();
+    allStaffTable();
     startClock();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 }
@@ -75,7 +84,7 @@ private void startClock() {
         jLabel14 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        resourceTable = new javax.swing.JTable();
+        staffTable = new javax.swing.JTable();
         jPanel18 = new javax.swing.JPanel();
         searchbar = new javax.swing.JTextField();
         search_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); search_button.setOpaque(false);
@@ -332,11 +341,6 @@ private void startClock() {
         delete_staff.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         delete_staff.setForeground(new java.awt.Color(255, 255, 255));
         delete_staff.setText("DELETE");
-        delete_staff.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                delete_staffMouseClicked(evt);
-            }
-        });
         delete_staff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delete_staffActionPerformed(evt);
@@ -380,7 +384,7 @@ private void startClock() {
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
 
-        resourceTable.setModel(new javax.swing.table.DefaultTableModel(
+        staffTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -388,7 +392,7 @@ private void startClock() {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STAFF ID", "FULL NAME", "EMAIL", "DATE REGISTED", "PASSWORD", "ROLE", "LAST LOG IN", "CREATED AT", "UPDATED AT"
+                "STAFF ID", "FULL NAME", "EMAIL", "DATE REGISTED", "ROLE", "PASSWORD", "LAST LOG IN", "CREATED AT", "UPDATED AT"
             }
         ) {
             Class[] types = new Class [] {
@@ -406,7 +410,7 @@ private void startClock() {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(resourceTable);
+        jScrollPane1.setViewportView(staffTable);
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -533,35 +537,72 @@ private void startClock() {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void add_staffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_staffMouseClicked
-        add_form_staff a = new add_form_staff();
-        a.setVisible(true);
+        
     }//GEN-LAST:event_add_staffMouseClicked
 
     private void add_staffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_staffActionPerformed
-        // TODO add your handling code here:
+        int lastID = (int) staffTable.getValueAt(0, 0);
+        new add_form_staff(this, lastID).setVisible(true);
     }//GEN-LAST:event_add_staffActionPerformed
 
     private void update_staffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_staffMouseClicked
-        update_form_staff a = new update_form_staff();
-        a.setVisible(true);
+     
     }//GEN-LAST:event_update_staffMouseClicked
 
     private void update_staffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_staffActionPerformed
-        // TODO add your handling code here:
+        Staff selected = getSelectedStaff();
+        if (selected == null) return;
+
+        update_form_staff a = new update_form_staff(this, selected);
+        a.setVisible(true);
     }//GEN-LAST:event_update_staffActionPerformed
 
-    private void delete_staffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_staffMouseClicked
-        delete_member a = new delete_member();
-        a.setVisible(true);
-    }//GEN-LAST:event_delete_staffMouseClicked
-
     private void delete_staffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_staffActionPerformed
-        // TODO add your handling code here:
+        Staff selected = getSelectedStaff();
+        if (selected == null) return;
+
+        deletestaff_confirmation a = new deletestaff_confirmation(this, selected);
+        a.setVisible(true);
     }//GEN-LAST:event_delete_staffActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public void allStaffTable() {
+        try {
+            StaffDAO dao = new StaffDAO();
+            List<Staff> list = dao.getAll();
+
+            DefaultTableModel model = (DefaultTableModel) staffTable.getModel();
+            model.setRowCount(0); // clear table
+
+            for (Staff s : list) {
+                model.addRow(new Object[]{
+                    s.getStaffID(),
+                    s.getFullName(),
+                    s.getEmail(),
+                    s.getUsername(),
+                    s.getRole(),
+                    s.getPassword(),
+                    s.getLastLogin(),
+                    s.getCreatedAt(),
+                    s.getUpdatedAt()
+                });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    StaffController sc = new StaffController();
+    
+    private Staff getSelectedStaff() {
+        int row = staffTable.getSelectedRow();
+        if (row < 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a member from the table first.");
+            return null;
+        }
+        int id = (int) staffTable.getValueAt(row, 0);
+        return sc.getStaffById(id);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -615,9 +656,9 @@ private void startClock() {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel position;
-    private javax.swing.JTable resourceTable;
     private javax.swing.JButton search_button;
     private javax.swing.JTextField searchbar;
+    private javax.swing.JTable staffTable;
     private javax.swing.JButton update_staff;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables

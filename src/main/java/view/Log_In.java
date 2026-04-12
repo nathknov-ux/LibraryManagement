@@ -8,6 +8,7 @@ package view;
  *
  * @author A
  */
+import controller.StaffController;
 import java.awt.Color;
 public class Log_In extends javax.swing.JFrame {
     
@@ -50,7 +51,7 @@ public class Log_In extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = (javax.swing.JPanel) new RoundedPanel(40, Color.BLACK); jPanel2.setOpaque(false);
         ;
-        SignIn2 = new javax.swing.JButton();
+        loginBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
@@ -122,11 +123,11 @@ public class Log_In extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel2.setPreferredSize(new java.awt.Dimension(1023, 660));
 
-        SignIn2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        SignIn2.setText("LOG IN");
-        SignIn2.addActionListener(new java.awt.event.ActionListener() {
+        loginBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        loginBtn.setText("LOG IN");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SignIn2ActionPerformed(evt);
+                loginBtnActionPerformed(evt);
             }
         });
 
@@ -216,7 +217,7 @@ public class Log_In extends javax.swing.JFrame {
                 .addGap(132, 132, 132))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(172, 172, 172)
-                .addComponent(SignIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -233,7 +234,7 @@ public class Log_In extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spcb)
                 .addGap(36, 36, 36)
-                .addComponent(SignIn2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -245,12 +246,17 @@ public class Log_In extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void SignIn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignIn2ActionPerformed
-        Dash_Board a = new Dash_Board();
-        a.setVisible(true);
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        StaffController sc = new StaffController();
+        if (sc.login(username.getText().trim(), passwords.getText())) {
+            System.out.println("Log in succesful");
+            Dash_Board a = new Dash_Board();
+            a.setVisible(true);
         this.dispose();
-        
-    }//GEN-LAST:event_SignIn2ActionPerformed
+        } else {
+            System.out.println("Incorrect Username or Password");
+        }
+    }//GEN-LAST:event_loginBtnActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
@@ -319,7 +325,6 @@ public class Log_In extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SignIn2;
     private javax.swing.JButton SignIn3;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JFileChooser jFileChooser1;
@@ -340,6 +345,7 @@ public class Log_In extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton loginBtn;
     private javax.swing.JPasswordField passwords;
     private javax.swing.JCheckBox spcb;
     private javax.swing.JTextField username;

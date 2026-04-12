@@ -1,9 +1,11 @@
 package controller;
 
 import java.util.List;
+import model.Member;
 import model.ResourceCopy;
 import model.Staff;
 import model.dao.StaffDAO;
+import util.Session;
 
 public class StaffController {
     private StaffDAO staffDAO = new StaffDAO();
@@ -54,4 +56,18 @@ public class StaffController {
         try { return staffDAO.getAll(); }
         catch (Exception e) { System.out.println(e.getMessage()); return null; }
     }
+    
+    public Staff getStaffById(int id) {
+        try { return staffDAO.getById(id); }
+        catch (Exception e) { return null; }
+    }
+    
+    public boolean login(String username, String password) {
+        try {
+            Staff s = staffDAO.login(username, password);
+            if (s != null) { Session.login(s); return true; }
+        } catch (Exception e) { System.out.println("login: " + e.getMessage()); }
+        return false;
+    }
+    
 }
