@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Resource;
 import model.dao.ResourceDAO;
@@ -743,6 +744,11 @@ private void startClock() {
         update_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         update_button.setForeground(new java.awt.Color(255, 255, 255));
         update_button.setText("UPDATE");
+        update_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                update_buttonMouseClicked(evt);
+            }
+        });
         update_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 update_buttonActionPerformed(evt);
@@ -1079,8 +1085,38 @@ private void startClock() {
     }//GEN-LAST:event_others_buttonActionPerformed
 
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
-       
+       ResourceController rc = new ResourceController();
+    
+        boolean ad = rc.addResource(
+        title.getText(),
+        resource_type.getSelectedItem().toString(),
+        author.getText(),
+        Integer.parseInt(year_published.getText()),
+        isbn_issn.getText(),
+        degree_level.getText(),
+        Integer.parseInt(total_copies.getText()),
+        1
+    );
+    
+    if (ad) {
+        JOptionPane.showMessageDialog(this, "Resource added successfully!");
+        allResourcesTable(); // refresh the table
+    } else {
+        JOptionPane.showMessageDialog(this, "Failed to add resource.");
+    }
+    title.setText("");
+    author.setText("");
+    year_published.setText("");
+    isbn_issn.setText("");
+    degree_level.setText("");
+    total_copies.setText("");
+    resource_type.setSelectedIndex(0);
+
     }//GEN-LAST:event_add_buttonMouseClicked
+
+    private void update_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_buttonMouseClicked
+       
+    }//GEN-LAST:event_update_buttonMouseClicked
 
     private void allResourcesTable() {
         try {
