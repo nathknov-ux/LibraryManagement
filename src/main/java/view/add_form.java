@@ -8,17 +8,21 @@ package view;
  *
  * @author A
  */
+import controller.MemberController;
 import java.awt.Color;
 public class add_form extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(add_form.class.getName());
-
+    private MembersPage parent;
     /**
      * Creates new form add_form
      */
-    public add_form() {
-       
+    public add_form(MembersPage parent, int lastID) {
+        
+        this.parent = parent;
+        
         initComponents();
+        member_id.setText(String.valueOf(lastID + 1));
         setLocationRelativeTo(null);
     }
 
@@ -48,7 +52,7 @@ public class add_form extends javax.swing.JFrame {
         name = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
-        search_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); search_button.setOpaque(false);
+        add_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); add_button.setOpaque(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -107,21 +111,24 @@ public class add_form extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel6.setText("Surname: ");
 
+        surname.addActionListener(this::surnameActionPerformed);
+
         jLabel7.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel7.setText("Name:");
 
         jLabel9.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel9.setText("Email:");
 
-        search_button.setBackground(new java.awt.Color(0, 0, 0));
-        search_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        search_button.setForeground(new java.awt.Color(255, 255, 255));
-        search_button.setText("ADD");
-        search_button.addMouseListener(new java.awt.event.MouseAdapter() {
+        add_button.setBackground(new java.awt.Color(0, 0, 0));
+        add_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        add_button.setForeground(new java.awt.Color(255, 255, 255));
+        add_button.setText("ADD");
+        add_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                search_buttonMouseClicked(evt);
+                add_buttonMouseClicked(evt);
             }
         });
+        add_button.addActionListener(this::add_buttonActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,7 +161,7 @@ public class add_form extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
-                .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -179,7 +186,7 @@ public class add_form extends javax.swing.JFrame {
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
 
@@ -201,38 +208,36 @@ public class add_form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
-        added_notification a = new added_notification();
-        a.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_search_buttonMouseClicked
+    private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
+        
+    }//GEN-LAST:event_add_buttonMouseClicked
+
+    private void surnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_surnameActionPerformed
+
+    private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
+        MemberController mc = new MemberController();
+        String fullName = surname.getText().trim().toUpperCase() + ", " + name.getText().trim();
+        
+        if (mc.addMember(fullName, email.getText().trim())) {
+            added_notification a = new added_notification();
+            a.setVisible(true);
+            parent.allMembersTable();
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_add_buttonActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new add_form().setVisible(true));
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_button;
     private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -249,7 +254,6 @@ public class add_form extends javax.swing.JFrame {
     private javax.swing.JTextField member_id1;
     private javax.swing.JTextField member_id4;
     private javax.swing.JTextField name;
-    private javax.swing.JButton search_button;
     private javax.swing.JTextField surname;
     // End of variables declaration//GEN-END:variables
 }
