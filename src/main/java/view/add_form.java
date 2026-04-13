@@ -107,6 +107,7 @@ public class add_form extends javax.swing.JFrame {
         jLabel4.setText("Member ID: ");
 
         member_id.setEditable(false);
+        member_id.addActionListener(this::member_idActionPerformed);
 
         jLabel6.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel6.setText("Surname: ");
@@ -228,6 +229,10 @@ public class add_form extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_add_buttonActionPerformed
+
+    private void member_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_member_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_member_idActionPerformed
 
     /**
      * @param args the command line arguments

@@ -28,8 +28,9 @@ public class ResourceDAO {
         r.setStatus(Resource.ResourceStatus.fromString(rs.getString("status")));
         r.setTotalCopies(rs.getInt("total_copies"));
         r.setAvailableCopies(rs.getInt("available_copies"));
-        int addedBy = rs.getInt("added_by");
-        r.setAddedBy(rs.wasNull() ? null : addedBy);
+        
+        Integer addedby = (Integer) rs.getObject("added_by");
+        r.setAddedBy(addedby);
         Timestamp ca = rs.getTimestamp("created_at");
         if (ca != null) r.setCreatedAt(ca.toLocalDateTime());
         Timestamp ua = rs.getTimestamp("updated_at");
@@ -92,7 +93,7 @@ public class ResourceDAO {
     
     public List<Resource> getAll() throws SQLException {
         List<Resource> list = new ArrayList<>();
-        String sql = "SELECT * FROM resource ORDER BY created_at DESC";
+        String sql = "SELECT * FROM resource ORDER BY resource_id DESC";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()) {

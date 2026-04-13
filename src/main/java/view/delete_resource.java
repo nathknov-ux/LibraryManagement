@@ -21,6 +21,16 @@ public class delete_resource extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    private model.Resource resource;
+    private ResourcePage parent;
+
+    public delete_resource(ResourcePage parent, model.Resource resource) {
+        this.parent = parent;
+        this.resource = resource;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,9 +142,23 @@ public class delete_resource extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
-        deleted_notification a = new deleted_notification();
-        a.setVisible(true);
-        this.dispose();
+        if (resource == null) {
+            this.dispose();
+            return;
+        }
+
+        controller.ResourceController rc = new controller.ResourceController();
+        boolean ok = rc.deleteResource(resource.getResourceId());
+
+        if (ok) {
+            deleted_notification a = new deleted_notification();
+            a.setVisible(true);
+            if (parent != null) parent.allResourcesTable();
+            this.dispose();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Delete failed.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_search_buttonMouseClicked
 
     private void search_buttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseEntered

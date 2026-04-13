@@ -20,6 +20,16 @@ public class delete_copies extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    private view_copies parent;
+    private String barcode;
+    
+    public delete_copies(view_copies parent, String barcode) {
+        this.parent = parent;
+        this.barcode = barcode;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,9 +141,23 @@ public class delete_copies extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void search_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseClicked
-        deleted_notification a = new deleted_notification();
-        a.setVisible(true);
-        this.dispose();
+        if (barcode == null) {
+            this.dispose();
+            return;
+        }
+        
+        controller.ResourceCopyController rcc = new controller.ResourceCopyController();
+        boolean ok = rcc.deleteResourceCopy(barcode);
+        
+        if (ok) {
+            deleted_notification a = new deleted_notification();
+            a.setVisible(true);
+            if (parent != null) parent.refreshTable();
+            this.dispose();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Delete failed.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_search_buttonMouseClicked
 
     private void search_buttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseEntered

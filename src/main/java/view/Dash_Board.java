@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
 import java.awt.Color;
+import java.util.Map;
+import model.dao.DashboardDAO;
 import util.Session;
 /**
  *
@@ -26,6 +28,7 @@ public class Dash_Board extends javax.swing.JFrame {
     fullname.setText(Session.getFullName());
     position.setText(Session.getRole().toUpperCase());
     startClock();
+    loadDashboardData();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
@@ -915,11 +918,56 @@ private void startClock() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadDashboardData() {
+        try {
+            DashboardDAO dashDAO = new DashboardDAO();
+            
+            // --- Borrowed counts by type ---
+            Map<String, Integer> borrowed = dashDAO.getBorrowedCountByType();
+            int totalBorrowed = dashDAO.getTotalBorrowed();
+            
+            borrowed_resources.setText(String.valueOf(totalBorrowed));
+            audiovisual_borrow.setText(String.valueOf(borrowed.getOrDefault("audiovisual", 0)));
+            books_borrow.setText(String.valueOf(borrowed.getOrDefault("book", 0)));
+            dissertation_borrow.setText(String.valueOf(borrowed.getOrDefault("dissertation", 0)));
+            govdocs_borrow.setText(String.valueOf(borrowed.getOrDefault("government_document", 0)));
+            journal_borrow.setText(String.valueOf(borrowed.getOrDefault("journal", 0)));
+            maps_borrow.setText(String.valueOf(borrowed.getOrDefault("map", 0)));
+            magazine_borrow.setText(String.valueOf(borrowed.getOrDefault("magazine", 0)));
+            news_borrow.setText(String.valueOf(borrowed.getOrDefault("newspaper", 0)));
+            research_borrow.setText(String.valueOf(borrowed.getOrDefault("research_paper", 0)));
+            thesis_borrow.setText(String.valueOf(borrowed.getOrDefault("thesis", 0)));
+            others_borrow.setText(String.valueOf(borrowed.getOrDefault("other", 0)));
+            
+            // --- Available counts by type ---
+            Map<String, Integer> available = dashDAO.getAvailableCountByType();
+            int totalAvailable = dashDAO.getTotalAvailable();
+            
+            available_resources.setText(String.valueOf(totalAvailable));
+            audiovisual_total.setText(String.valueOf(available.getOrDefault("audiovisual", 0)));
+            books_total.setText(String.valueOf(available.getOrDefault("book", 0)));
+            dissertation_total.setText(String.valueOf(available.getOrDefault("dissertation", 0)));
+            govdocs_total.setText(String.valueOf(available.getOrDefault("government_document", 0)));
+            journal_total.setText(String.valueOf(available.getOrDefault("journal", 0)));
+            map_total.setText(String.valueOf(available.getOrDefault("map", 0)));
+            magazine_total.setText(String.valueOf(available.getOrDefault("magazine", 0)));
+            news_total.setText(String.valueOf(available.getOrDefault("newspaper", 0)));
+            research_total.setText(String.valueOf(available.getOrDefault("research_paper", 0)));
+            thesis_total.setText(String.valueOf(available.getOrDefault("thesis", 0)));
+            others_total.setText(String.valueOf(available.getOrDefault("other", 0)));
+            
+        } catch (Exception e) {
+            System.out.println("Dashboard load error: " + e.getMessage());
+        }
+    }
+
+
     private void log_outMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_log_outMouseClicked
         Log_In l = new Log_In();
         l.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_log_outMouseClicked
+
 
     private void book_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_book_iconMouseClicked
         ResourcePage rp = new ResourcePage();

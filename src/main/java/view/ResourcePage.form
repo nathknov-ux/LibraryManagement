@@ -1051,6 +1051,9 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="resourceTableMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1140,7 +1143,7 @@
                                                   </Group>
                                                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="resouce_id" min="-2" pref="205" max="-2" attributes="0"/>
+                                                      <Component id="resourceID" min="-2" pref="205" max="-2" attributes="0"/>
                                                       <Component id="title" min="-2" pref="205" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="115" pref="115" max="-2" attributes="0"/>
@@ -1154,26 +1157,26 @@
                                                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="author" min="-2" pref="213" max="-2" attributes="0"/>
-                                                      <Component id="year_published" min="-2" pref="213" max="-2" attributes="0"/>
+                                                      <Component id="yearPublished" min="-2" pref="213" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Group type="102" alignment="1" attributes="0">
                                                           <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                                                          <Component id="degree_level" min="-2" pref="213" max="-2" attributes="0"/>
+                                                          <Component id="degreeLevel" min="-2" pref="213" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="1" attributes="0">
                                                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="jComboBox1" min="-2" pref="213" max="-2" attributes="0"/>
+                                                          <Component id="status" min="-2" pref="213" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                                                  <Component id="resource_type" min="-2" pref="205" max="-2" attributes="0"/>
+                                                  <Component id="resourceType" min="-2" pref="205" max="-2" attributes="0"/>
                                                   <EmptySpace min="135" pref="135" max="-2" attributes="0"/>
                                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
@@ -1181,7 +1184,7 @@
                                                   <EmptySpace min="119" pref="119" max="-2" attributes="0"/>
                                                   <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                                  <Component id="total_copies" min="-2" pref="213" max="-2" attributes="0"/>
+                                                  <Component id="totalCopies" min="-2" pref="213" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
@@ -1213,14 +1216,14 @@
                                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="resouce_id" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="resourceID" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                                   <Component id="title" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="author" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                                  <Component id="year_published" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="yearPublished" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
@@ -1239,7 +1242,7 @@
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="degree_level" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="degreeLevel" alignment="0" min="-2" max="-2" attributes="0"/>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                                                           <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
@@ -1248,19 +1251,19 @@
                                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="3" attributes="0">
                                                       <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="status" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                                              <Component id="total_copies" min="-2" max="-2" attributes="0"/>
+                                              <Component id="totalCopies" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="resource_type" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="resourceType" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                                       <Component id="isbn_issn" min="-2" max="-2" attributes="0"/>
                                                   </Group>
@@ -1302,12 +1305,12 @@
                             <Property name="text" type="java.lang.String" value="Resource ID:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="resouce_id">
+                        <Component class="javax.swing.JTextField" name="resourceID">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resouce_idActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resourceIDActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel14">
@@ -1352,9 +1355,9 @@
                             <Property name="text" type="java.lang.String" value="Year Published:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="year_published">
+                        <Component class="javax.swing.JTextField" name="yearPublished">
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="year_publishedActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yearPublishedActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel18">
@@ -1378,9 +1381,9 @@
                             <Property name="text" type="java.lang.String" value="Degree Level:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="degree_level">
+                        <Component class="javax.swing.JTextField" name="degreeLevel">
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="degree_levelActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="degreeLevelActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel20">
@@ -1391,9 +1394,9 @@
                             <Property name="text" type="java.lang.String" value="Status:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="total_copies">
+                        <Component class="javax.swing.JTextField" name="totalCopies">
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="total_copiesActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="totalCopiesActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel21">
@@ -1404,14 +1407,14 @@
                             <Property name="text" type="java.lang.String" value="Total Copies:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="resource_type">
+                        <Component class="javax.swing.JComboBox" name="resourceType">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Georgia" size="12" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="10">
-                                <StringItem index="0" value="Books"/>
+                                <StringItem index="0" value="Book"/>
                                 <StringItem index="1" value="Dissertation"/>
                                 <StringItem index="2" value="Government Documents"/>
                                 <StringItem index="3" value="Journal"/>
@@ -1424,6 +1427,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resourceTypeActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -1512,23 +1518,26 @@
                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false)"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox1">
+                        <Component class="javax.swing.JComboBox" name="status">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Georgia" size="12" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="7">
-                                <StringItem index="0" value="Borrowed"/>
-                                <StringItem index="1" value="Returned"/>
-                                <StringItem index="2" value="Overdue"/>
-                                <StringItem index="3" value="Lost"/>
-                                <StringItem index="4" value="Damaged"/>
-                                <StringItem index="5" value="Under Repair"/>
-                                <StringItem index="6" value="Withdrawn"/>
+                                <StringItem index="0" value="Active"/>
+                                <StringItem index="1" value="Inactive"/>
+                                <StringItem index="2" value="Reference_Only"/>
+                                <StringItem index="3" value="On_Order"/>
+                                <StringItem index="4" value="Archive"/>
+                                <StringItem index="5" value="Withdrawn"/>
+                                <StringItem index="6" value=" "/>
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statusActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>

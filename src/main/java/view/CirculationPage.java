@@ -9,6 +9,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import controller.CirculationController;
+import model.Circulation;
+import util.Session;
 /**
  *
  * @author A
@@ -16,14 +22,32 @@ import java.awt.Color;
 public class CirculationPage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CirculationPage.class.getName());
+    private CirculationController cc = new CirculationController();
 
     /**
      * Creates new form Dash_Board
      */
     public CirculationPage() {
     initComponents();
+    fullname.setText(Session.getFullName());
+    position.setText(Session.getRole().toUpperCase());
+    allCirculationsTable();
     startClock();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+    
+    // Escape key to clear selection
+    circulationTable.getInputMap(javax.swing.JComponent.WHEN_FOCUSED)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0), "clearSelection");
+    circulationTable.getActionMap().put("clearSelection", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) { circulationTable.clearSelection(); }
+    });
+    
+    // Right-click to clear selection
+    circulationTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            if (javax.swing.SwingUtilities.isRightMouseButton(evt)) { circulationTable.clearSelection(); }
+        }
+    });
 }
 
 private void startClock() {
@@ -69,6 +93,9 @@ private void startClock() {
         jPanel15 = new javax.swing.JPanel();
         overdue_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); overdue_button.setOpaque(false);
         returnfunc_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); returnfunc_button.setOpaque(false);
+        borrow_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); borrow_button.setOpaque(false);
+        fines_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); fines_button.setOpaque(false);
+        all_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false);
         jLabel14 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -296,19 +323,34 @@ private void startClock() {
         overdue_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         overdue_button.setForeground(new java.awt.Color(255, 255, 255));
         overdue_button.setText("OVERDUE");
+        overdue_button.addActionListener(this::overdue_buttonActionPerformed);
 
         returnfunc_button.setBackground(new java.awt.Color(0, 0, 0));
         returnfunc_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         returnfunc_button.setForeground(new java.awt.Color(255, 255, 255));
         returnfunc_button.setText("RETURN");
-        returnfunc_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnfunc_buttonActionPerformed(evt);
-            }
-        });
+        returnfunc_button.addActionListener(this::returnfunc_buttonActionPerformed);
+
+        borrow_button.setBackground(new java.awt.Color(0, 0, 0));
+        borrow_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        borrow_button.setForeground(new java.awt.Color(255, 255, 255));
+        borrow_button.setText("BORROW");
+        borrow_button.addActionListener(this::borrow_buttonActionPerformed);
+
+        fines_button.setBackground(new java.awt.Color(0, 0, 0));
+        fines_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        fines_button.setForeground(new java.awt.Color(255, 255, 255));
+        fines_button.setText("FINES");
+        fines_button.addActionListener(this::fines_buttonActionPerformed);
+
+        all_button.setBackground(new java.awt.Color(0, 0, 0));
+        all_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        all_button.setForeground(new java.awt.Color(255, 255, 255));
+        all_button.setText("ALL");
+        all_button.addActionListener(this::all_buttonActionPerformed);
 
         jLabel14.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
-        jLabel14.setText("STATUS");
+        jLabel14.setText("ACTIONS");
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -317,8 +359,11 @@ private void startClock() {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(overdue_button, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                    .addComponent(returnfunc_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(borrow_button, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(returnfunc_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(overdue_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fines_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(all_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -331,27 +376,28 @@ private void startClock() {
                 .addGap(57, 57, 57)
                 .addComponent(jLabel14)
                 .addGap(18, 18, 18)
-                .addComponent(overdue_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(all_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(borrow_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(returnfunc_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(overdue_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(fines_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
 
         circulationTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
-            },
+            new Object [][] {},
             new String [] {
                 "CIRCULATION ID", "BARCODE", "MEMBER ID", "BORROWED AT", "DUE DATE", "RETURNED", "STATUS", "FINE AMOUNT", "REASON", "PAID", "PROCESSED BY"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -366,6 +412,7 @@ private void startClock() {
         search_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         search_button.setForeground(new java.awt.Color(255, 255, 255));
         search_button.setText("SEARCH");
+        search_button.addActionListener(this::search_buttonActionPerformed);
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -469,45 +516,139 @@ private void startClock() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void resourceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resourceMouseClicked
+    private void resourceMouseClicked(java.awt.event.MouseEvent evt) {
         ResourcePage rp = new ResourcePage();
         rp.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_resourceMouseClicked
+    }
 
-    private void returnsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_returnsMouseClicked
-        CirculationPage cp = new CirculationPage();
-        cp.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_returnsMouseClicked
+    private void returnsMouseClicked(java.awt.event.MouseEvent evt) {
+        // Already on CirculationPage
+    }
 
-    private void membersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_membersMouseClicked
+    private void membersMouseClicked(java.awt.event.MouseEvent evt) {
         MembersPage mp = new MembersPage();
         mp.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_membersMouseClicked
+    }
 
-    private void staffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_staffMouseClicked
+    private void staffMouseClicked(java.awt.event.MouseEvent evt) {
         StaffPage a = new StaffPage();
         a.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_staffMouseClicked
+    }
 
-    private void logMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseClicked
+    private void logMouseClicked(java.awt.event.MouseEvent evt) {
         Log_In l = new Log_In();
         l.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_logMouseClicked
+    }
 
-    private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
+    private void logoMouseClicked(java.awt.event.MouseEvent evt) {
          Dash_Board a = new Dash_Board();
         a.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_logoMouseClicked
+    }
 
-    private void returnfunc_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnfunc_buttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_returnfunc_buttonActionPerformed
+    // ==================== CRUD Actions ====================
+
+    private void borrow_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        borrow_form bf = new borrow_form(this);
+        bf.setVisible(true);
+    }
+
+    private void returnfunc_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        int row = circulationTable.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a circulation record to return.");
+            return;
+        }
+        int circulationId = (int) circulationTable.getValueAt(row, 0);
+        String status = String.valueOf(circulationTable.getValueAt(row, 6));
+        
+        if ("RETURNED".equalsIgnoreCase(status)) {
+            JOptionPane.showMessageDialog(this, "This item has already been returned.");
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Confirm return for Circulation ID: " + circulationId + "?",
+            "Confirm Return", JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            boolean success = cc.returnCopy(circulationId);
+            if (success) {
+                added_notification a = new added_notification();
+                a.setVisible(true);
+                allCirculationsTable();
+            } else {
+                JOptionPane.showMessageDialog(this, "Return failed.");
+            }
+        }
+    }
+
+    private void overdue_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        loadTable(cc.getOverdue());
+    }
+
+    private void all_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        allCirculationsTable();
+    }
+
+    private void fines_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        int row = circulationTable.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a circulation record to manage fines.");
+            return;
+        }
+        int circulationId = (int) circulationTable.getValueAt(row, 0);
+        Circulation c = cc.getById(circulationId);
+        if (c != null) {
+            fine_form ff = new fine_form(this, c);
+            ff.setVisible(true);
+        }
+    }
+
+    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        String keyword = searchbar.getText().trim();
+        if (keyword.isEmpty()) {
+            allCirculationsTable();
+        } else {
+            loadTable(cc.search(keyword));
+        }
+    }
+
+    // ==================== Table Methods ====================
+
+    public void allCirculationsTable() {
+        loadTable(cc.getAllCirculations());
+    }
+
+    private void loadTable(List<Circulation> list) {
+        try {
+            DefaultTableModel model = (DefaultTableModel) circulationTable.getModel();
+            model.setRowCount(0);
+            if (list != null) {
+                for (Circulation c : list) {
+                    model.addRow(new Object[]{
+                        c.getCirculationId(),
+                        c.getBarcode(),
+                        c.getMemberId(),
+                        c.getBorrowedAt() != null ? c.getBorrowedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) : "",
+                        c.getDueDate() != null ? c.getDueDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) : "",
+                        c.getReturned() != null ? c.getReturned().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) : "",
+                        c.getStatus() != null ? c.getStatus().name() : "",
+                        c.getFineAmount(),
+                        c.getReason() != null ? c.getReason().name() : "",
+                        c.isPaid() ? "Yes" : "No",
+                        c.getProcessedBy()
+                    });
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -535,8 +676,11 @@ private void startClock() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton all_button;
+    private javax.swing.JButton borrow_button;
     private javax.swing.JTable circulationTable;
     private javax.swing.JLabel dateTimeLabel;
+    private javax.swing.JButton fines_button;
     private javax.swing.JLabel fullname;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
