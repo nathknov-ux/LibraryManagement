@@ -13,8 +13,9 @@ import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Member;
 import model.Resource;
-import model.dao.ResourceDAO;
+import util.Session;
 /**
  *
  * @author A
@@ -23,19 +24,24 @@ import model.dao.ResourceDAO;
 public class ResourcePage extends javax.swing.JFrame {
     private int selectedRow = -1;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ResourcePage.class.getName());
-
-    /**
-     * Creates new form Dash_Board
-     */
+    private Resource resource;
+    
     public ResourcePage() {
         initComponents();
-        delete_button.setEnabled(false);
+        fullname.setText(Session.getFullName());
+        
+       
         delete_button.setBackground(java.awt.Color.GRAY);
         update_button.setEnabled(false);
         update_button.setBackground(java.awt.Color.GRAY);
         view_button.setEnabled(false);
         view_button.setBackground(java.awt.Color.GRAY);
         allResourcesTable();
+        
+        
+        int lastID = (int) resourceTable.getValueAt(0, 0);        
+        resourceID.setText(String.valueOf(lastID + 1));
+        delete_button.setEnabled(false);
         startClock();
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
@@ -52,6 +58,21 @@ public class ResourcePage extends javax.swing.JFrame {
             delete_button.setBackground(color);
             update_button.setBackground(color);
             view_button.setBackground(color);
+        }
+        
+    });
+    
+    // Escape key to clear selection
+    resourceTable.getInputMap(javax.swing.JComponent.WHEN_FOCUSED)
+        .put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0), "clearSelection");
+    resourceTable.getActionMap().put("clearSelection", new javax.swing.AbstractAction() {
+        @Override public void actionPerformed(java.awt.event.ActionEvent e) { clearSelection(); }
+    });
+    
+    // Right-click to clear selection
+    resourceTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            if (javax.swing.SwingUtilities.isRightMouseButton(evt)) { clearSelection(); }
         }
     });
 }
@@ -126,27 +147,27 @@ private void startClock() {
         jPanel17 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        resouce_id = new javax.swing.JTextField();
+        resourceID = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         title = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         author = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        year_published = new javax.swing.JTextField();
+        yearPublished = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         isbn_issn = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        degree_level = new javax.swing.JTextField();
+        degreeLevel = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        total_copies = new javax.swing.JTextField();
+        totalCopies = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        resource_type = new javax.swing.JComboBox<>();
+        resourceType = new javax.swing.JComboBox<>();
         delete_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false);
         add_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false);
         update_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false);
         view_button = (javax.swing.JButton) new rounded_buttons(20, Color.BLACK); all_button.setOpaque(false);
-        jComboBox1 = new javax.swing.JComboBox<>();
+        status = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -608,6 +629,11 @@ private void startClock() {
                 return canEdit [columnIndex];
             }
         });
+        resourceTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resourceTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(resourceTable);
         if (resourceTable.getColumnModel().getColumnCount() > 0) {
             resourceTable.getColumnModel().getColumn(0).setPreferredWidth(4);
@@ -620,6 +646,11 @@ private void startClock() {
         search_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         search_button.setForeground(new java.awt.Color(255, 255, 255));
         search_button.setText("SEARCH");
+        search_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doSearch();
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -669,10 +700,10 @@ private void startClock() {
         jLabel13.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel13.setText("Resource ID:");
 
-        resouce_id.setEditable(false);
-        resouce_id.addActionListener(new java.awt.event.ActionListener() {
+        resourceID.setEditable(false);
+        resourceID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resouce_idActionPerformed(evt);
+                resourceIDActionPerformed(evt);
             }
         });
 
@@ -700,9 +731,9 @@ private void startClock() {
         jLabel17.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel17.setText("Year Published:");
 
-        year_published.addActionListener(new java.awt.event.ActionListener() {
+        yearPublished.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                year_publishedActionPerformed(evt);
+                yearPublishedActionPerformed(evt);
             }
         });
 
@@ -718,26 +749,31 @@ private void startClock() {
         jLabel19.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel19.setText("Degree Level:");
 
-        degree_level.addActionListener(new java.awt.event.ActionListener() {
+        degreeLevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                degree_levelActionPerformed(evt);
+                degreeLevelActionPerformed(evt);
             }
         });
 
         jLabel20.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel20.setText("Status:");
 
-        total_copies.addActionListener(new java.awt.event.ActionListener() {
+        totalCopies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                total_copiesActionPerformed(evt);
+                totalCopiesActionPerformed(evt);
             }
         });
 
         jLabel21.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jLabel21.setText("Total Copies:");
 
-        resource_type.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        resource_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Books", "Dissertation", "Government Documents", "Journal", "Map", "Magazine", "Newspaper", "Research Paper", "Thesis", "Others" }));
+        resourceType.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        resourceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Book", "Dissertation", "Government Documents", "Journal", "Map", "Magazine", "Newspaper", "Research Paper", "Thesis", "Others" }));
+        resourceType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resourceTypeActionPerformed(evt);
+            }
+        });
 
         delete_button.setBackground(new java.awt.Color(0, 0, 0));
         delete_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
@@ -799,8 +835,13 @@ private void startClock() {
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Borrowed", "Returned", "Overdue", "Lost", "Damaged", "Under Repair", "Withdrawn" }));
+        status.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive", "Reference_Only", "On_Order", "Archive", "Withdrawn", " " }));
+        status.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -823,7 +864,7 @@ private void startClock() {
                                         .addComponent(jLabel14)))
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(resouce_id, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(resourceID, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(115, 115, 115)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -834,21 +875,21 @@ private void startClock() {
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(author, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(year_published, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(yearPublished, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                                         .addComponent(jLabel19)
                                         .addGap(12, 12, 12)
-                                        .addComponent(degree_level, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(degreeLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                                         .addComponent(jLabel20)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(12, 12, 12)
-                                .addComponent(resource_type, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(resourceType, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(135, 135, 135)
                                 .addComponent(jLabel18)
                                 .addGap(12, 12, 12)
@@ -856,7 +897,7 @@ private void startClock() {
                                 .addGap(119, 119, 119)
                                 .addComponent(jLabel21)
                                 .addGap(12, 12, 12)
-                                .addComponent(total_copies, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(totalCopies, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(68, 68, 68)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel17Layout.createSequentialGroup()
@@ -879,13 +920,13 @@ private void startClock() {
                         .addGap(37, 37, 37)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addComponent(resouce_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(resourceID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addComponent(author, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(year_published, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(yearPublished, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -899,23 +940,23 @@ private void startClock() {
                                         .addComponent(jLabel17))))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(degree_level, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(degreeLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel17Layout.createSequentialGroup()
                                         .addGap(3, 3, 3)
                                         .addComponent(jLabel19)))
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel20)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(12, 12, 12)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
-                            .addComponent(total_copies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalCopies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
-                                    .addComponent(resource_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(resourceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel18)
                                     .addComponent(isbn_issn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel17Layout.createSequentialGroup()
@@ -1055,9 +1096,9 @@ private void startClock() {
         resourceTypeTable("audiovisual");
     }//GEN-LAST:event_audiovisual_buttonActionPerformed
 
-    private void resouce_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resouce_idActionPerformed
+    private void resourceIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resourceIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_resouce_idActionPerformed
+    }//GEN-LAST:event_resourceIDActionPerformed
 
     private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
         // TODO add your handling code here:
@@ -1067,21 +1108,21 @@ private void startClock() {
         // TODO add your handling code here:
     }//GEN-LAST:event_authorActionPerformed
 
-    private void year_publishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_year_publishedActionPerformed
+    private void yearPublishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearPublishedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_year_publishedActionPerformed
+    }//GEN-LAST:event_yearPublishedActionPerformed
 
     private void isbn_issnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbn_issnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_isbn_issnActionPerformed
 
-    private void degree_levelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_degree_levelActionPerformed
+    private void degreeLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_degreeLevelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_degree_levelActionPerformed
+    }//GEN-LAST:event_degreeLevelActionPerformed
 
-    private void total_copiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_total_copiesActionPerformed
+    private void totalCopiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalCopiesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_total_copiesActionPerformed
+    }//GEN-LAST:event_totalCopiesActionPerformed
 
     private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
         if (resourceTable.getSelectedRow() == -1) {
@@ -1092,18 +1133,60 @@ private void startClock() {
         return;
     }
     }//GEN-LAST:event_delete_buttonActionPerformed
-
+        ResourceController rc = new ResourceController();
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
-       
+        
+
+        try {
+            int newYearPublished = Integer.parseInt(yearPublished.getText().trim());
+            int newTotalCopies = Integer.parseInt(totalCopies.getText().trim());
+
+            boolean success = rc.addResource(
+                title.getText().trim(),
+                resourceType.getSelectedItem().toString(),
+                author.getText().trim(),
+                newYearPublished,
+                isbn_issn.getText().trim(),
+                degreeLevel.getText().trim(),
+                newTotalCopies,
+                Session.getStaffID()
+            );
+
+            if (success) {
+                added_notification a = new added_notification();
+                a.setVisible(true);
+                allResourcesTable();
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Year Published and Total Copies must be numbers.");
+        }
     }//GEN-LAST:event_add_buttonActionPerformed
 
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
-        if (resourceTable.getSelectedRow() == -1) {
-        JOptionPane.showMessageDialog(this,
-            "Please select a row from the table first.",
-            "No Selection",
-            JOptionPane.WARNING_MESSAGE);
-        return;
+        Resource selected = getSelectedMember();
+        if (selected == null) return;
+        
+        try {
+            selected.setTitle(title.getText().trim());
+            selected.setResourceType(Resource.ResourceType.fromString(resourceType.getSelectedItem().toString().replace(" ", "_")));
+            selected.setAuthor(author.getText().trim());
+            selected.setYearPublished(Integer.parseInt(yearPublished.getText().trim()));
+            selected.setIsbnIssn(isbn_issn.getText().trim());
+            selected.setDegreeLevel(degreeLevel.getText().trim());
+            selected.setStatus(Resource.ResourceStatus.fromString(status.getSelectedItem().toString().replace(" ", "_")));
+            selected.setTotalCopies(Integer.parseInt(totalCopies.getText().trim()));
+            
+            boolean success = rc.updateResource(selected);
+            if (success) {
+                updated_notification a = new updated_notification();
+                a.setVisible(true);
+                allResourcesTable();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Update failed.");
+            }
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Invalid input data.");
         }
     }//GEN-LAST:event_update_buttonActionPerformed
 
@@ -1157,47 +1240,55 @@ private void startClock() {
     }//GEN-LAST:event_add_buttonMouseClicked
 
     private void delete_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_buttonMouseClicked
-        if (resourceTable.getSelectedRow() == -1) {
-        JOptionPane.showMessageDialog(this,
-            "Please select a row from the table first.",
-            "No Selection",
-            JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        Resource selected = getSelectedMember();
+        if (selected == null) return;
         
-        delete_resource a = new delete_resource();
+        delete_resource a = new delete_resource(this, selected);
         a.setVisible(true);
     }//GEN-LAST:event_delete_buttonMouseClicked
 
     private void update_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_buttonMouseClicked
-        if (resourceTable.getSelectedRow() == -1) {
-        JOptionPane.showMessageDialog(this,
-            "Please select a row from the table first.",
-            "No Selection",
-            JOptionPane.WARNING_MESSAGE);
-        return;
-    }
         
-        updated_notification a = new updated_notification();
-        a.setVisible(true);
     }//GEN-LAST:event_update_buttonMouseClicked
 
     private void view_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_view_buttonMouseClicked
-        if (resourceTable.getSelectedRow() == -1) {
-        JOptionPane.showMessageDialog(this,
-            "Please select a row from the table first.",
-            "No Selection",
-            JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-        view_copies a = new view_copies();
+        Resource selected = getSelectedMember();
+        if (selected == null) return;
+        
+        view_copies a = new view_copies(selected.getResourceId());
         a.setVisible(true);
     }//GEN-LAST:event_view_buttonMouseClicked
 
-    private void allResourcesTable() {
+    private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusActionPerformed
+
+    private void resourceTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resourceTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resourceTypeActionPerformed
+
+    private void resourceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resourceTableMouseClicked
+        int row = resourceTable.getSelectedRow();
+        if (row < 0) return;
+        
+        int id = (int) resourceTable.getValueAt(row, 0);
+        Resource selected = rc.getResourceById(id);
+        if (selected == null) return;
+        
+        resourceID.setText(String.valueOf(selected.getResourceId()));
+        title.setText(selected.getTitle());
+        resourceType.setSelectedItem(selected.getResourceType() != null ? selected.getResourceType().name() : "");
+        author.setText(selected.getAuthor());
+        yearPublished.setText(String.valueOf(selected.getYearPublished()));
+        isbn_issn.setText(selected.getIsbnIssn());
+        degreeLevel.setText(selected.getDegreeLevel());
+        status.setSelectedItem(selected.getStatus() != null ? selected.getStatus().name() : "");
+        totalCopies.setText(String.valueOf(selected.getTotalCopies()));
+    }//GEN-LAST:event_resourceTableMouseClicked
+
+    public void allResourcesTable() {
         try {
-            ResourceDAO dao = new ResourceDAO();
-            List<Resource> list = dao.getAll();
+            List<Resource> list = rc.getAllResources();
 
             DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
             model.setRowCount(0); // clear table
@@ -1256,6 +1347,69 @@ private void startClock() {
             e.printStackTrace();
         }
     }
+    
+    private Resource getSelectedMember() {
+        int row = resourceTable.getSelectedRow();
+        if (row < 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a resource from the table first.");
+            return null;
+        }
+        int id = (int) resourceTable.getValueAt(row, 0);
+        return rc.getResourceById(id);
+    }
+    
+    private void doSearch() {
+        String keyword = searchbar.getText().trim();
+        if (keyword.isEmpty()) {
+            allResourcesTable();
+            return;
+        }
+        try {
+            List<Resource> list = rc.search(keyword);
+            DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
+            model.setRowCount(0);
+            if (list != null) {
+                for (Resource r : list) {
+                    model.addRow(new Object[]{
+                        r.getResourceId(),
+                        r.getTitle(),
+                        r.getResourceType(),
+                        r.getAuthor(),
+                        r.getYearPublished(),
+                        r.getIsbnIssn(),
+                        r.getDegreeLevel(),
+                        r.getStatus(),
+                        r.getTotalCopies(),
+                        r.getAvailableCopies(),
+                        r.getAddedBy(),
+                        r.getCreatedAt(),
+                        r.getUpdatedAt()
+                    });
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void clearSelection() {
+        resourceTable.clearSelection();
+        selectedRow = -1;
+        resourceID.setText("");
+        title.setText("");
+        author.setText("");
+        yearPublished.setText("");
+        isbn_issn.setText("");
+        degreeLevel.setText("");
+        totalCopies.setText("");
+        delete_button.setEnabled(false);
+        delete_button.setBackground(java.awt.Color.GRAY);
+        update_button.setEnabled(false);
+        update_button.setBackground(java.awt.Color.GRAY);
+        view_button.setEnabled(false);
+        view_button.setBackground(java.awt.Color.GRAY);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1287,13 +1441,12 @@ private void startClock() {
     private javax.swing.JLabel book_icon;
     private javax.swing.JButton books_button;
     private javax.swing.JLabel dateTimeLabel;
-    private javax.swing.JTextField degree_level;
+    private javax.swing.JTextField degreeLevel;
     private javax.swing.JButton delete_button;
     private javax.swing.JButton diss_button;
     private javax.swing.JLabel fullname;
     private javax.swing.JButton govdocs_button;
     private javax.swing.JTextField isbn_issn;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1340,17 +1493,18 @@ private void startClock() {
     private javax.swing.JButton others_button;
     private javax.swing.JLabel position;
     private javax.swing.JButton research_button;
-    private javax.swing.JTextField resouce_id;
+    private javax.swing.JTextField resourceID;
     private javax.swing.JTable resourceTable;
-    private javax.swing.JComboBox<String> resource_type;
+    private javax.swing.JComboBox<String> resourceType;
     private javax.swing.JButton search_button;
     private javax.swing.JTextField searchbar;
+    private javax.swing.JComboBox<String> status;
     private javax.swing.JButton thesis_button;
     private javax.swing.JTextField title;
-    private javax.swing.JTextField total_copies;
+    private javax.swing.JTextField totalCopies;
     private javax.swing.JButton update_button;
     private javax.swing.JLabel user;
     private javax.swing.JButton view_button;
-    private javax.swing.JTextField year_published;
+    private javax.swing.JTextField yearPublished;
     // End of variables declaration//GEN-END:variables
 }

@@ -105,7 +105,7 @@ public class Resource {
     public void setAvailableCopies(int total)    { this.availableCopies = total; }
 
     public Integer getAddedBy()                  { return addedBy; }
-    public void setAddedBy(int addedBy)      { this.addedBy = addedBy; }
+    public void setAddedBy(Integer addedBy)      { this.addedBy = addedBy; }
 
     public LocalDateTime getCreatedAt()              { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }

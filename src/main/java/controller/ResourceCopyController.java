@@ -33,9 +33,18 @@ public class ResourceCopyController {
     public boolean updateResourceCopy(ResourceCopy r) { return rcd.update(r); }
     public boolean deleteResourceCopy(String barcode)     { return rcd.delete(barcode); }
  
-    public List<ResourceCopy> getAllResources() {
+    public List<ResourceCopy> getAllCopies() {
         try { return rcd.getAll(); }
         catch (Exception e) { System.out.println(e.getMessage()); return null; }
     }
-
+    
+    public List<ResourceCopy> getCopiesByResourceId(int resourceId) {
+        try { return rcd.getByResourceId(resourceId); }
+        catch (Exception e) { System.out.println(e.getMessage()); return null; }
+    }
+    
+    public ResourceCopy getByBarcode(String barcode) {
+        try { return rcd.getByBarcode(barcode); }
+        catch (Exception e) { return null; }
+    }
 }

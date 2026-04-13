@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 import model.Resource;
 import model.Resource.ResourceStatus;
+import model.Staff;
 import model.dao.ResourceDAO;
 
 public class ResourceController {
@@ -32,11 +33,11 @@ public class ResourceController {
         r.setTitle(title.trim());
         r.setResourceType(Resource.ResourceType.valueOf(resourceType.toUpperCase())); 
         r.setAuthor(author);
-        r.setYearPublished(yearPublished);  // nullable Integer
+        r.setYearPublished(yearPublished);  
         r.setIsbnIssn(isbnIssn);
         r.setDegreeLevel(degreeLevel);
         r.setStatus(ResourceStatus.ACTIVE);
-        r.setTotalCopies(totalCopies);      // ← was setAvailableCopies()
+        r.setTotalCopies(totalCopies);      
         r.setAddedBy(addedBy);
 
         // 3. Call DAO
@@ -57,8 +58,18 @@ public class ResourceController {
         catch (Exception e) { System.out.println(e.getMessage()); return null; }
     }
     
+    public Resource getResourceById(int id) {
+        try { return resourceDAO.getById(id); }
+        catch (Exception e) { return null; }
+    }
+    
     public List<Resource> getByType(String type) {
         try { return resourceDAO.getByType(type); }
+        catch (Exception e) { System.out.println(e.getMessage()); return null; }
+    }
+
+    public List<Resource> search(String keyword) {
+        try { return resourceDAO.search(keyword); }
         catch (Exception e) { System.out.println(e.getMessage()); return null; }
     }
 }

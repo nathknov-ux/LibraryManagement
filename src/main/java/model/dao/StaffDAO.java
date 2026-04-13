@@ -14,6 +14,7 @@ import java.util.List;
 import model.Member;
 import model.Staff;
 import util.DBConnection;
+import util.PasswordUtil;
 
 /**
  *
@@ -48,7 +49,7 @@ public class StaffDAO {
            stmt.setString(1, s.getFullName());
            stmt.setString(2, s.getEmail());
            stmt.setString(3, s.getUsername());
-           stmt.setString(4, s.getPassword());
+           stmt.setString(4, PasswordUtil.hash(s.getPassword()));
            stmt.setString(5, s.getRole());
            
            int rowsAffected = stmt.executeUpdate();
@@ -146,15 +147,16 @@ public class StaffDAO {
     }
     
     public Staff login(String username, String password) throws SQLException {
-        String sql = "SELECT * FROM staff WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM staff WHERE username = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
-            ps.setString(2, password);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    Staff s = mapRow(rs);                    
-                    return s;
+                    Staff s = mapRow(rs);
+                    if (PasswordUtil.verify(password, s.getPassword())) {
+                        return s;
+                    }
                 }
             }
         }

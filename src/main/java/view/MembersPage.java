@@ -15,7 +15,7 @@ import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.Resource;
-import model.dao.ResourceDAO;
+import util.Session;
 import view.delete_member;
 /**
  *
@@ -28,6 +28,8 @@ public class MembersPage extends javax.swing.JFrame {
     
     public MembersPage() {
     initComponents();
+    fullname.setText(Session.getFullName());
+    position.setText(Session.getRole().toUpperCase());
     allMembersTable();
     startClock();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -554,9 +556,13 @@ private void startClock() {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void add_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_memberActionPerformed
-        int lastID = (int) memberTable.getValueAt(0, 0);
+        int lastID;
+        if (memberTable == null) {
+            lastID = 0;
+        } else {
+            lastID = (int) memberTable.getValueAt(0, 0);
+        }        
         new add_form(this, lastID).setVisible(true);
-        
     }//GEN-LAST:event_add_memberActionPerformed
 
     private void update_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_memberActionPerformed
