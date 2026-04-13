@@ -15,8 +15,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.Resource;
 import model.Staff;
-import model.dao.ResourceDAO;
-import model.dao.StaffDAO;
 /**
  *
  * @author A
@@ -30,6 +28,7 @@ public class StaffPage extends javax.swing.JFrame {
      */
     public StaffPage() {
     initComponents();
+    fullname.setText(util.Session.getFullName());
     allStaffTable();
     startClock();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -418,6 +417,11 @@ private void startClock() {
         search_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         search_button.setForeground(new java.awt.Color(255, 255, 255));
         search_button.setText("SEARCH");
+        search_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doSearch();
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -541,7 +545,12 @@ private void startClock() {
     }//GEN-LAST:event_add_staffMouseClicked
 
     private void add_staffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_staffActionPerformed
-        int lastID = (int) staffTable.getValueAt(0, 0);
+        int lastID;
+        if (staffTable == null) {
+            lastID = 0;
+        } else {
+            lastID = (int) staffTable.getValueAt(0, 0);
+        }
         new add_form_staff(this, lastID).setVisible(true);
     }//GEN-LAST:event_add_staffActionPerformed
 
@@ -567,8 +576,7 @@ private void startClock() {
 
     public void allStaffTable() {
         try {
-            StaffDAO dao = new StaffDAO();
-            List<Staff> list = dao.getAll();
+            List<Staff> list = sc.getAllStaff();
 
             DefaultTableModel model = (DefaultTableModel) staffTable.getModel();
             model.setRowCount(0); // clear table
@@ -596,11 +604,45 @@ private void startClock() {
     private Staff getSelectedStaff() {
         int row = staffTable.getSelectedRow();
         if (row < 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Please select a member from the table first.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a staff from the table first.");
             return null;
         }
         int id = (int) staffTable.getValueAt(row, 0);
         return sc.getStaffById(id);
+    }
+    
+    private void doSearch() {
+        String keyword = searchbar.getText().trim();
+        if (keyword.isEmpty()) {
+            allStaffTable();
+            return;
+        }
+        try {
+            List<Staff> list = sc.search(keyword);
+            DefaultTableModel model = (DefaultTableModel) staffTable.getModel();
+            model.setRowCount(0);
+            if (list != null) {
+                for (Staff s : list) {
+                    model.addRow(new Object[]{
+                        s.getStaffID(),
+                        s.getFullName(),
+                        s.getEmail(),
+                        s.getUsername(),
+                        s.getRole(),
+                        s.getPassword(),
+                        s.getLastLogin(),
+                        s.getCreatedAt(),
+                        s.getUpdatedAt()
+                    });
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void clearSelection() {
+        staffTable.clearSelection();
     }
     
     public static void main(String args[]) {

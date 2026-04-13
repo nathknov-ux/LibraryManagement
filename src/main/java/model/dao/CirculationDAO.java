@@ -42,6 +42,29 @@ public class CirculationDAO {
         return false;
     }
 
+    public List<Circulation> getAll() throws SQLException {
+        List<Circulation> list = new ArrayList<>();
+        String sql = "SELECT * FROM circulation ORDER BY circulation_id DESC";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) list.add(mapRow(rs));
+        }
+        return list;
+    }
+
+    public Circulation getById(int id) throws SQLException {
+        String sql = "SELECT * FROM circulation WHERE circulation_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return mapRow(rs);
+            }
+        }
+        return null;
+    }
+
     public List<Circulation> getActiveBorrows() throws SQLException {
         List<Circulation> list = new ArrayList<>();
         String sql = "SELECT * FROM circulation WHERE returned IS NULL ORDER BY due_date";
@@ -64,8 +87,43 @@ public class CirculationDAO {
         }
         return list;
     }
-    
-        private Circulation mapRow(ResultSet rs) throws SQLException {
+
+    public List<Circulation> search(String keyword) throws SQLException {
+        List<Circulation> list = new ArrayList<>();
+        String sql = "SELECT * FROM circulation WHERE barcode LIKE ? OR CAST(member_id AS CHAR) LIKE ? OR CAST(circulation_id AS CHAR) LIKE ? ORDER BY circulation_id DESC";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            String like = "%" + keyword + "%";
+            ps.setString(1, like);
+            ps.setString(2, like);
+            ps.setString(3, like);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) list.add(mapRow(rs));
+            }
+        }
+        return list;
+    }
+
+    public boolean updateFine(Circulation c) {
+        String sql = "UPDATE circulation SET fine_amount=?, reason=?, paid=? WHERE circulation_id=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setBigDecimal(1, c.getFineAmount());
+            if (c.getReason() != null) {
+                ps.setString(2, c.getReason().name().toLowerCase());
+            } else {
+                ps.setNull(2, java.sql.Types.VARCHAR);
+            }
+            ps.setBoolean(3, c.isPaid());
+            ps.setInt(4, c.getCirculationId());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Update fine failed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private Circulation mapRow(ResultSet rs) throws SQLException {
         Circulation c = new Circulation();
         c.setCirculationId(rs.getInt("circulation_id"));
         c.setBarcode(rs.getString("barcode"));
@@ -86,6 +144,3 @@ public class CirculationDAO {
         return c;
     }
 }
-
-
-

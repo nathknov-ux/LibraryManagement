@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 public class ResourceCopy {
     public enum ResourceStatus {
-        ACTIVE, INACTIVE, REFERENCE_ONLY,
-        ON_ORDER, ARCHIVED, WITHDRAWN;
+        AVAILABLE, BORROWED, LOST, DAMAGED, MAINTENANCE;
 
         public static ResourceStatus fromString(String value) {
+            if (value == null) return null;
             return ResourceStatus.valueOf(value.toUpperCase());
         }
     }
@@ -32,14 +32,14 @@ public class ResourceCopy {
     public void setBarcode(String barcode)        { this.barcode = barcode; }
 
     public int getResourceId()               { return resourceId; }
-    public void setResourceId(int id)        { this.resourceId = resourceId; }
+    public void setResourceId(int id)        { this.resourceId = id; }
 
     public ResourceStatus getStatus()               { return status; }
-    public void setStatus(ResourceStatus rs)        { this.barcode = barcode; }
+    public void setStatus(ResourceStatus rs)        { this.status = rs; }
 
     public LocalDateTime getAcquiredAt()  { return acquiredAt; }
-    public void setAcquiredAt (LocalDateTime ldt)        { this.acquiredAt = acquiredAt; }
+    public void setAcquiredAt (LocalDateTime ldt)        { this.acquiredAt = ldt; }
 
     public LocalDateTime getUpdatedAt()  { return updatedAt; }
-    public void setUpdatedAt (LocalDateTime ldt)        { this.updatedAt = updatedAt; }
+    public void setUpdatedAt (LocalDateTime ldt)        { this.updatedAt = ldt; }
 }

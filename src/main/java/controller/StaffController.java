@@ -5,6 +5,7 @@ import model.Member;
 import model.ResourceCopy;
 import model.Staff;
 import model.dao.StaffDAO;
+import util.EmailService;
 import util.Session;
 
 public class StaffController {
@@ -41,9 +42,11 @@ public class StaffController {
         boolean success = staffDAO.create(s);
 
         if (success) {
-            System.out.println("Resource added successfully.");
+            System.out.println("Staff added successfully.");
+            // Send credentials email
+            EmailService.sendStaffCredentials(email, fullName, username, password);
         } else {
-            System.out.println("Failed to add resource.");
+            System.out.println("Failed to add staff.");
         }
 
         return success;
@@ -52,7 +55,7 @@ public class StaffController {
     public boolean updateStaff(Staff s) { return staffDAO.update(s); }
     public boolean deleteStaff(int staffID)     { return staffDAO.delete(staffID); }
  
-    public List<Staff> getAllResources() {
+    public List<Staff> getAllStaff() {
         try { return staffDAO.getAll(); }
         catch (Exception e) { System.out.println(e.getMessage()); return null; }
     }
@@ -68,6 +71,10 @@ public class StaffController {
             if (s != null) { Session.login(s); return true; }
         } catch (Exception e) { System.out.println("login: " + e.getMessage()); }
         return false;
+    }
+    public List<Staff> search(String keyword) {
+        try { return staffDAO.search(keyword); }
+        catch (Exception e) { System.out.println(e.getMessage()); return List.of(); }
     }
     
 }

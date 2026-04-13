@@ -55,7 +55,7 @@ public class ResourceCopyDAO {
         }
     }
     
-     public List<ResourceCopy> getAll() throws SQLException {
+      public List<ResourceCopy> getAll() throws SQLException {
         List<ResourceCopy> list = new ArrayList<>();
         String sql = "SELECT * FROM resource_copy ORDER BY resource_id ASC";
         try (Connection conn = DBConnection.getConnection();
@@ -65,6 +65,31 @@ public class ResourceCopyDAO {
             while (rs.next()) list.add(mapRow(rs));
         }
         return list;
+    }
+    
+     public List<ResourceCopy> getByResourceId(int resourceId) throws SQLException {
+        List<ResourceCopy> list = new ArrayList<>();
+        String sql = "SELECT * FROM resource_copy WHERE resource_id = ? ORDER BY barcode ASC";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, resourceId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) list.add(mapRow(rs));
+            }
+        }
+        return list;
+    }
+    
+     public ResourceCopy getByBarcode(String barcode) throws SQLException {
+        String sql = "SELECT * FROM resource_copy WHERE barcode = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, barcode);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return mapRow(rs);
+            }
+        }
+        return null;
     }
      
      public ResourceCopy getById(int id) throws SQLException {

@@ -9,9 +9,15 @@ package view;
  * @author A
  */
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import controller.ResourceCopyController;
+import model.ResourceCopy;
 public class view_copies extends javax.swing.JFrame {
     private int selectedRow = -1;
+    private int resourceId;
+    private ResourceCopyController rcc = new ResourceCopyController();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(view_copies.class.getName());
 
     /**
@@ -26,20 +32,59 @@ public class view_copies extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         resource_copy_table.getSelectionModel().addListSelectionListener(e -> {
-    if (!e.getValueIsAdjusting()) {
-        selectedRow = resource_copy_table.getSelectedRow();
-        boolean hasSelection = selectedRow != -1;
+            if (!e.getValueIsAdjusting()) {
+                selectedRow = resource_copy_table.getSelectedRow();
+                boolean hasSelection = selectedRow != -1;
 
-        delete_button.setEnabled(hasSelection);
-        update_button.setEnabled(hasSelection);
-        
+                delete_button.setEnabled(hasSelection);
+                update_button.setEnabled(hasSelection);
 
-        java.awt.Color color = hasSelection ? java.awt.Color.BLACK : java.awt.Color.GRAY;
-        delete_button.setBackground(color);
-        update_button.setBackground(color);
-        
+                java.awt.Color color = hasSelection ? java.awt.Color.BLACK : java.awt.Color.GRAY;
+                delete_button.setBackground(color);
+                update_button.setBackground(color);
+                
+                if (hasSelection) {
+                    barcode.setText(String.valueOf(resource_copy_table.getValueAt(selectedRow, 0)));
+                    resource_id.setText(String.valueOf(resource_copy_table.getValueAt(selectedRow, 1)));
+                    String statusVal = String.valueOf(resource_copy_table.getValueAt(selectedRow, 2));
+                    for (int i = 0; i < status.getItemCount(); i++) {
+                        if (status.getItemAt(i).equalsIgnoreCase(statusVal)) {
+                            status.setSelectedIndex(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
     }
-});
+    
+    public view_copies(int resourceId) {
+        this();
+        this.resourceId = resourceId;
+        resource_id.setText(String.valueOf(resourceId));
+        resource_id.setEditable(false);
+        refreshTable();
+    }
+    
+    public void refreshTable() {
+        try {
+            List<ResourceCopy> list = rcc.getCopiesByResourceId(resourceId);
+            DefaultTableModel model = (DefaultTableModel) resource_copy_table.getModel();
+            model.setRowCount(0);
+            if (list != null) {
+                for (ResourceCopy rc : list) {
+                    model.addRow(new Object[]{
+                        rc.getBarcode(),
+                        rc.getResourceId(),
+                        rc.getStatus() != null ? rc.getStatus().name() : "",
+                        rc.getAcquiredAt(),
+                        rc.getUpdatedAt()
+                    });
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -167,7 +212,7 @@ public class view_copies extends javax.swing.JFrame {
 
         jLabel4.setText("Status:");
 
-        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Borrowed", "Returned", "Overdue", "Lost", "Damaged", "Under Repair", "Withdrawn" }));
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Borrowed", "Lost", "Damaged", "Maintenance" }));
 
         jLabel7.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel7.setText("DETAILS");
@@ -255,33 +300,78 @@ public class view_copies extends javax.swing.JFrame {
     }//GEN-LAST:event_delete_buttonActionPerformed
 
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
+        String barcodeVal = barcode.getText().trim();
+        String resIdVal = resource_id.getText().trim();
+        String statusVal = status.getSelectedItem().toString();
         
-        added_notification a = new added_notification();
-        a.setVisible(true);
+        if (barcodeVal.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Barcode is required.");
+            return;
+        }
+        
+        try {
+            String sql = "INSERT INTO resource_copy (barcode, resource_id, status) VALUES (?,?,?)";
+            try (java.sql.Connection conn = util.DBConnection.getConnection();
+                 java.sql.PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setString(1, barcodeVal);
+                ps.setInt(2, Integer.parseInt(resIdVal));
+                ps.setString(3, statusVal.toLowerCase().replace(" ", "_"));
+                int rows = ps.executeUpdate();
+                if (rows > 0) {
+                    added_notification a = new added_notification();
+                    a.setVisible(true);
+                    refreshTable();
+                    barcode.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Add failed.");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_add_buttonMouseClicked
 
     private void delete_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_buttonMouseClicked
         if (resource_copy_table.getSelectedRow() == -1) {
-        JOptionPane.showMessageDialog(this,
-            "Please select a row from the table first.",
-            "No Selection",
-            JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-        delete_copies a = new delete_copies();
+            JOptionPane.showMessageDialog(this,
+                "Please select a row from the table first.",
+                "No Selection",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String selectedBarcode = String.valueOf(resource_copy_table.getValueAt(selectedRow, 0));
+        delete_copies a = new delete_copies(this, selectedBarcode);
         a.setVisible(true);
     }//GEN-LAST:event_delete_buttonMouseClicked
 
     private void update_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_buttonMouseClicked
         if (resource_copy_table.getSelectedRow() == -1) {
-        JOptionPane.showMessageDialog(this,
-            "Please select a row from the table first.",
-            "No Selection",
-            JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-        updated_notification a = new updated_notification();
-        a.setVisible(true);
+            JOptionPane.showMessageDialog(this,
+                "Please select a row from the table first.",
+                "No Selection",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try {
+            String selectedBarcode = String.valueOf(resource_copy_table.getValueAt(selectedRow, 0));
+            String statusVal = status.getSelectedItem().toString().toLowerCase().replace(" ", "_");
+            
+            ResourceCopy rc = rcc.getByBarcode(selectedBarcode);
+            if (rc != null) {
+                rc.setStatus(ResourceCopy.ResourceStatus.fromString(statusVal));
+                boolean success = rcc.updateResourceCopy(rc);
+                if (success) {
+                    updated_notification a = new updated_notification();
+                    a.setVisible(true);
+                    refreshTable();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Update failed.");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_update_buttonMouseClicked
 
     /**
