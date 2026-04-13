@@ -500,14 +500,14 @@ public class Sign_Up extends javax.swing.JFrame {
     }//GEN-LAST:event_surnameKeyPressed
 
     private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
-        if (role.getText().equals("Username")) {
-            role.setText("");
+        if (username.getText().equals("Username")) {
+            username.setText("");
         }
     }//GEN-LAST:event_usernameFocusGained
 
     private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
-        if (email.getText().isEmpty()) {
-        email.setText("Username");
+        if (username.getText().isEmpty()) {
+        username.setText("Username");
     }
     }//GEN-LAST:event_usernameFocusLost
 

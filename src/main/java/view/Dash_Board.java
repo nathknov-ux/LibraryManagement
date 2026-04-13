@@ -350,7 +350,7 @@ private void startClock() {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/book black.png"))); // NOI18N
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile.png"))); // NOI18N
         jPanel3.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 40));
 
         fullname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
