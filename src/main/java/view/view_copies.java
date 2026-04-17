@@ -121,6 +121,11 @@ public class view_copies extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo white.png"))); // NOI18N
         jLabel2.setText("OOKEEPR ™");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
@@ -212,7 +217,7 @@ public class view_copies extends javax.swing.JFrame {
 
         jLabel4.setText("Status:");
 
-        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Borrowed", "Lost", "Damaged", "Maintenance" }));
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Borrowed", "Returned", "Overdue", "Lost", "Damaged", "Under Repair", "Withdrawn" }));
 
         jLabel7.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel7.setText("DETAILS");
@@ -373,6 +378,12 @@ public class view_copies extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_update_buttonMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        ResourcePage a = new ResourcePage();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments

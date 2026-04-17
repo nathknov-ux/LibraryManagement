@@ -12,6 +12,7 @@ import javax.swing.Timer;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.Resource;
@@ -29,7 +30,7 @@ public class ResourcePage extends javax.swing.JFrame {
     public ResourcePage() {
         initComponents();
         fullname.setText(Session.getFullName());
-        
+        position.setText(Session.getRole().toUpperCase());
        
         delete_button.setBackground(java.awt.Color.GRAY);
         update_button.setEnabled(false);
@@ -646,9 +647,9 @@ private void startClock() {
         search_button.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         search_button.setForeground(new java.awt.Color(255, 255, 255));
         search_button.setText("SEARCH");
-        search_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                doSearch();
+        search_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_buttonActionPerformed(evt);
             }
         });
 
@@ -768,7 +769,7 @@ private void startClock() {
         jLabel21.setText("Total Copies:");
 
         resourceType.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        resourceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Book", "Dissertation", "Government Documents", "Journal", "Map", "Magazine", "Newspaper", "Research Paper", "Thesis", "Others" }));
+        resourceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Book", "Dissertation", "Government_Documents", "Journal", "Map", "Magazine", "Newspaper", "Research_Paper", "Thesis", "Other" }));
         resourceType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resourceTypeActionPerformed(evt);
@@ -1156,6 +1157,9 @@ private void startClock() {
                 added_notification a = new added_notification();
                 a.setVisible(true);
                 allResourcesTable();
+                ResourcePage rp = new ResourcePage();
+                rp.setVisible(true);
+                
             }
 
         } catch (NumberFormatException e) {
@@ -1286,6 +1290,12 @@ private void startClock() {
         totalCopies.setText(String.valueOf(selected.getTotalCopies()));
     }//GEN-LAST:event_resourceTableMouseClicked
 
+    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
+       doSearch();
+    }//GEN-LAST:event_search_buttonActionPerformed
+
+   
+    
     public void allResourcesTable() {
         try {
             List<Resource> list = rc.getAllResources();

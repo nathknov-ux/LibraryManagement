@@ -339,29 +339,56 @@ public class Sign_Up extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SignUp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUp2ActionPerformed
-        String mi = middle.getText().trim().equals("M.I") ? "" : " " + middle.getText().trim();
-        String fullname = surname.getText().trim().toUpperCase() + ", "
-                        + firstname.getText().trim() + mi;
+        
+    String surnameVal   = surname.getText().trim();
+    String firstnameVal = firstname.getText().trim();
+    String miVal        = middle.getText().trim();
+    String emailVal     = email.getText().trim();
+    String roleVal      = role.getText().trim();
+    String usernameVal  = username.getText().trim();
+    String passwordVal  = String.valueOf(password.getPassword()).trim();
 
-        StaffController sc = new StaffController();
-        boolean ok = sc.addStaff(
-            fullname,
-            email.getText().trim(),
-            username.getText().trim(),
-            String.valueOf(password.getPassword()),
-            role.getText().trim()
-        );
+    // Check for empty or placeholder values
+    if (surnameVal.isEmpty()   || surnameVal.equals("Surname")    ||
+        firstnameVal.isEmpty() || firstnameVal.equals("First Name") ||
+        emailVal.isEmpty()     || emailVal.equals("Email")        ||
+        roleVal.isEmpty()      || roleVal.equals("Role")          ||
+        usernameVal.isEmpty()  || usernameVal.equals("Username")  ||
+        passwordVal.isEmpty()) {
 
-        if (ok) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Account created successfully!");
-            Log_In l = new Log_In();
-            l.setVisible(true);
-            this.dispose();
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this,
-                "Sign up failed. Username may already exist.",
-                "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Please fill in all required fields.",
+            "Incomplete Form",
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+        // stop here, don't proceed
+    }
+
+    // Build full name
+    String mi       = miVal.equals("M.I") ? "" : " " + miVal;
+    String fullname = surnameVal.toUpperCase() + ", " + firstnameVal + mi;
+
+    // Proceed with insert
+    StaffController sc = new StaffController();
+    boolean ok = sc.addStaff(
+        fullname,
+        emailVal,
+        usernameVal,
+        passwordVal,
+        roleVal
+    );
+
+    if (ok) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Account created successfully!");
+        Log_In l = new Log_In();
+        l.setVisible(true);
+        this.dispose();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Sign up failed. Username may already exist.",
+            "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
     }//GEN-LAST:event_SignUp2ActionPerformed
 
     private void spcbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spcbActionPerformed
@@ -500,14 +527,14 @@ public class Sign_Up extends javax.swing.JFrame {
     }//GEN-LAST:event_surnameKeyPressed
 
     private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
-        if (role.getText().equals("Username")) {
-            role.setText("");
+        if (username.getText().equals("Username")) {
+            username.setText("");
         }
     }//GEN-LAST:event_usernameFocusGained
 
     private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
-        if (email.getText().isEmpty()) {
-        email.setText("Username");
+        if (username.getText().isEmpty()) {
+        username.setText("Username");
     }
     }//GEN-LAST:event_usernameFocusLost
 
@@ -567,3 +594,4 @@ public class Sign_Up extends javax.swing.JFrame {
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
+

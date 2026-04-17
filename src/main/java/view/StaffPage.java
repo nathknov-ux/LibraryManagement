@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.Resource;
 import model.Staff;
+import util.Session;
 /**
  *
  * @author A
@@ -29,6 +30,7 @@ public class StaffPage extends javax.swing.JFrame {
     public StaffPage() {
     initComponents();
     fullname.setText(util.Session.getFullName());
+    position.setText(Session.getRole().toUpperCase());
     allStaffTable();
     startClock();
     setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);

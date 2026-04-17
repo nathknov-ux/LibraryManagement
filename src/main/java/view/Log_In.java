@@ -10,6 +10,7 @@ package view;
  */
 import controller.StaffController;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 public class Log_In extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Log_In.class.getName());
@@ -254,7 +255,7 @@ public class Log_In extends javax.swing.JFrame {
             a.setVisible(true);
         this.dispose();
         } else {
-            System.out.println("Incorrect Username or Password");
+            JOptionPane.showMessageDialog(this, "Incorrect username or password");
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
