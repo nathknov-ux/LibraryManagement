@@ -250,22 +250,46 @@ public class fine_form extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {
         if (circulation == null) return;
 
-        try {
-            BigDecimal amount = new BigDecimal(fineAmountField.getText().trim());
-            String reason = (String) reasonCombo.getSelectedItem();
-            boolean paid = paidCheckbox.isSelected();
+        String fineText = fineAmountField.getText().trim();
 
-            boolean success = cc.updateFine(circulation.getCirculationId(), amount, reason, paid);
-            if (success) {
-                updated_notification a = new updated_notification();
-                a.setVisible(true);
-                if (parent != null) parent.allCirculationsTable();
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Save failed.");
-            }
+        // Validate fine amount is not empty
+        if (fineText.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                "Fine amount is required.",
+                "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validate fine amount is a valid number (not letters or symbols)
+        BigDecimal amount;
+        try {
+            amount = new BigDecimal(fineText);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Fine amount must be a valid number.");
+            JOptionPane.showMessageDialog(this,
+                "Fine amount must be a valid number. Letters and special characters are not allowed.",
+                "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validate fine amount is not negative
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            JOptionPane.showMessageDialog(this,
+                "Fine amount cannot be negative. Please enter a value of 0 or greater.",
+                "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String reason = (String) reasonCombo.getSelectedItem();
+        boolean paid = paidCheckbox.isSelected();
+
+        boolean success = cc.updateFine(circulation.getCirculationId(), amount, reason, paid);
+        if (success) {
+            updated_notification a = new updated_notification();
+            a.setVisible(true);
+            if (parent != null) parent.allCirculationsTable();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Save failed.");
         }
     }
 

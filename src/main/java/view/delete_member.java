@@ -154,6 +154,15 @@ public class delete_member extends javax.swing.JFrame {
         }
 
         controller.MemberController mc = new controller.MemberController();
+
+        // Check for active borrows first
+        if (mc.hasActiveBorrows(member.getMemberId())) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Cannot delete member. They have ongoing borrowed item(s).",
+                "Delete Blocked", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         boolean ok = mc.deleteMember(member.getMemberId());
 
         if (ok) {

@@ -89,18 +89,48 @@ public class MemberDAO {
         }
     }
     
-    public boolean delete(int memberId) {
-        // Will fail if resource_copy rows still exist (FK RESTRICT)
-        String sql = "DELETE FROM members WHERE member_id = ?";
+    /**
+     * Checks whether a member has any active (borrowed) circulation records.
+     */
+    public boolean hasActiveBorrows(int memberId) {
+        String sql = "SELECT COUNT(*) FROM circulation WHERE member_id = ? AND status = 'borrowed'";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            
             ps.setInt(1, memberId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Check active borrows failed: " + e.getMessage());
+        }
+        return false;
+    }
 
-            return ps.executeUpdate() > 0;
+    public boolean delete(int memberId) {
+        // Block deletion if the member has ongoing borrows
+        if (hasActiveBorrows(memberId)) {
+            return false;
+        }
+
+        String deleteCirculation = "DELETE FROM circulation WHERE member_id = ?";
+        String deleteMember     = "DELETE FROM members WHERE member_id = ?";
+        try (Connection conn = DBConnection.getConnection()) {
+            conn.setAutoCommit(false);
+            try (PreparedStatement ps1 = conn.prepareStatement(deleteCirculation)) {
+                ps1.setInt(1, memberId);
+                ps1.executeUpdate();
+            }
+            try (PreparedStatement ps2 = conn.prepareStatement(deleteMember)) {
+                ps2.setInt(1, memberId);
+                if (ps2.executeUpdate() > 0) {
+                    conn.commit();
+                    return true;
+                }
+            }
+            conn.rollback();
         } catch (SQLException e) {
             System.out.println("Delete failed: " + e.getMessage());
-            return false;
-        } 
+        }
+        return false;
     }
 }

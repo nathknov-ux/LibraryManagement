@@ -177,6 +177,14 @@ public class borrow_form extends javax.swing.JFrame {
             return;
         }
 
+        // Check if the resource copy is already borrowed
+        if (cc.isBorrowed(barcode)) {
+            JOptionPane.showMessageDialog(this,
+                "This resource is already borrowed. Please return it first before borrowing again.",
+                "Already Borrowed", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         try {
             int memberId = Integer.parseInt(memberIdStr);
             int dueDays = Integer.parseInt(dueDaysStr);

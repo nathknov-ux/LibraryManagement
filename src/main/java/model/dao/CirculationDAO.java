@@ -105,7 +105,7 @@ public class CirculationDAO {
     }
 
     public boolean updateFine(Circulation c) {
-        String sql = "UPDATE circulation SET fine_amount=?, reason=?, paid=? WHERE circulation_id=?";
+        String sql = "UPDATE circulation SET fine_amount=?, reason=?, paid=?, status=?, returned=? WHERE circulation_id=?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setBigDecimal(1, c.getFineAmount());
@@ -115,7 +115,13 @@ public class CirculationDAO {
                 ps.setNull(2, java.sql.Types.VARCHAR);
             }
             ps.setBoolean(3, c.isPaid());
-            ps.setInt(4, c.getCirculationId());
+            ps.setString(4, c.getStatus().name().toLowerCase());
+            if (c.getReturned() != null) {
+                ps.setTimestamp(5, Timestamp.valueOf(c.getReturned()));
+            } else {
+                ps.setNull(5, java.sql.Types.TIMESTAMP);
+            }
+            ps.setInt(6, c.getCirculationId());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("Update fine failed: " + e.getMessage());

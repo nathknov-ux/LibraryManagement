@@ -34,6 +34,7 @@ public class MemberController {
     }
     
     public boolean updateMember(Member r) { return memberDAO.update(r); }
+    public boolean hasActiveBorrows(int id) { return memberDAO.hasActiveBorrows(id); }
     public boolean deleteMember(int id)     { return memberDAO.delete(id); }
  
     

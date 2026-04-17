@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.Resource;
 import util.Session;
-import view.delete_member;
+
 /**
  *
  * @author A
@@ -577,7 +577,7 @@ private void startClock() {
         Member selected = getSelectedMember();
         if (selected == null) return;
 
-        delete_member a = new delete_member(this, selected);
+        view.delete_member a = new view.delete_member(this, selected);
         a.setVisible(true);
     }//GEN-LAST:event_delete_memberActionPerformed
 
