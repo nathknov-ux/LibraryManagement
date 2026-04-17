@@ -13,6 +13,8 @@ import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import model.Member;
 import model.Resource;
@@ -46,22 +48,45 @@ public class ResourcePage extends javax.swing.JFrame {
         startClock();
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
-        resourceTable.getSelectionModel().addListSelectionListener(e -> {
-        if (!e.getValueIsAdjusting()) {
-            selectedRow = resourceTable.getSelectedRow();
-            boolean hasSelection = selectedRow != -1;
-
-            delete_button.setEnabled(hasSelection);
-            update_button.setEnabled(hasSelection);
-            view_button.setEnabled(hasSelection);
-
-            java.awt.Color color = hasSelection ? java.awt.Color.BLACK : java.awt.Color.GRAY;
-            delete_button.setBackground(color);
-            update_button.setBackground(color);
-            view_button.setBackground(color);
-        }
-        
-    });
+        resourceTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int row = resourceTable.getSelectedRow();
+                    
+                    if (row == -1) {
+    clearSelection();
+    // Get next ID from full list, not from current table view
+    List<Resource> allResources = rc.getAllResources();
+if (!allResources.isEmpty()) {
+    int lastID = allResources.get(0).getResourceId();
+    resourceID.setText(String.valueOf(lastID + 1));
+}
+                    } else {
+                        // Row selected — fill fields
+                        int id = (int) resourceTable.getValueAt(row, 0);
+                        Resource selected = rc.getResourceById(id);
+                        if (selected == null) return;
+                        
+                       
+                        title.setText(selected.getTitle());
+                        resourceType.setSelectedItem(selected.getResourceType() != null ? selected.getResourceType().name() : "");
+                        author.setText(selected.getAuthor());
+                        yearPublished.setText(String.valueOf(selected.getYearPublished()));
+                        isbn_issn.setText(selected.getIsbnIssn());
+                        degreeLevel.setText(selected.getDegreeLevel());
+                        status.setSelectedItem(selected.getStatus() != null ? selected.getStatus().name() : "");
+                        totalCopies.setText(String.valueOf(selected.getTotalCopies()));
+                        
+                        delete_button.setEnabled(true);
+                        update_button.setEnabled(true);
+                        view_button.setEnabled(true);
+                        delete_button.setBackground(java.awt.Color.BLACK);
+                        update_button.setBackground(java.awt.Color.BLACK);
+                        view_button.setBackground(java.awt.Color.BLACK);
+                    }
+                }       }
+        });
     
     // Escape key to clear selection
     resourceTable.getInputMap(javax.swing.JComponent.WHEN_FOCUSED)
@@ -76,6 +101,27 @@ public class ResourcePage extends javax.swing.JFrame {
             if (javax.swing.SwingUtilities.isRightMouseButton(evt)) { clearSelection(); }
         }
     });
+    
+    resourceTable.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        int row = resourceTable.rowAtPoint(evt.getPoint());
+        
+        if (row < 0) {
+            resourceTable.clearSelection();
+            clearSelection();
+            if (resourceTable.getRowCount() > 0) {
+                int lastID = (int) resourceTable.getValueAt(0, 0);
+                resourceID.setText(String.valueOf(lastID + 1));
+            }
+        }
+        
+        if (javax.swing.SwingUtilities.isRightMouseButton(evt)) {
+            resourceTable.clearSelection();
+            clearSelection();
+        }
+    }
+});
 }
 
 private void startClock() {
@@ -769,7 +815,7 @@ private void startClock() {
         jLabel21.setText("Total Copies:");
 
         resourceType.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        resourceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Book", "Dissertation", "Government_Documents", "Journal", "Map", "Magazine", "Newspaper", "Research_Paper", "Thesis", "Other" }));
+        resourceType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Audiovisual", "Book", "Dissertation", "Government_Document", "Journal", "Map", "Magazine", "Newspaper", "Research_Paper", "Thesis", "Other" }));
         resourceType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resourceTypeActionPerformed(evt);
@@ -1137,34 +1183,40 @@ private void startClock() {
         ResourceController rc = new ResourceController();
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
         
+try {
+    // Only validate the 3 mandatory fields
+    if (title.getText().trim().isEmpty() ||
+        totalCopies.getText().trim().isEmpty() ||
+        resourceType.getSelectedItem() == null) {
+        
+        JOptionPane.showMessageDialog(this, "Title, Resource Type, and Total Copies are required!");
+        return;
+    }
 
-        try {
-            int newYearPublished = Integer.parseInt(yearPublished.getText().trim());
-            int newTotalCopies = Integer.parseInt(totalCopies.getText().trim());
+    int newYearPublished = yearPublished.getText().trim().isEmpty() ? 0 : Integer.parseInt(yearPublished.getText().trim());
+    int newTotalCopies = Integer.parseInt(totalCopies.getText().trim());
 
-            boolean success = rc.addResource(
-                title.getText().trim(),
-                resourceType.getSelectedItem().toString(),
-                author.getText().trim(),
-                newYearPublished,
-                isbn_issn.getText().trim(),
-                degreeLevel.getText().trim(),
-                newTotalCopies,
-                Session.getStaffID()
-            );
+    boolean success = rc.addResource(
+        title.getText().trim(),
+        resourceType.getSelectedItem().toString(),
+        author.getText().trim(),
+        newYearPublished,
+        isbn_issn.getText().trim(),
+        degreeLevel.getText().trim(),
+        newTotalCopies,
+        Session.getStaffID()
+    );
 
-            if (success) {
-                added_notification a = new added_notification();
-                a.setVisible(true);
-                allResourcesTable();
-                ResourcePage rp = new ResourcePage();
-                rp.setVisible(true);
-                
-            }
+    if (success) {
+        added_resource_notification a = new added_resource_notification();
+        a.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this, "Add failed, please check inputs!");
+    }
 
-        } catch (NumberFormatException e) {
-            System.out.println("Year Published and Total Copies must be numbers.");
-        }
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "Total Copies and Year published must be a valid!");
+}
     }//GEN-LAST:event_add_buttonActionPerformed
 
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
@@ -1239,8 +1291,7 @@ private void startClock() {
     }//GEN-LAST:event_view_buttonActionPerformed
 
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
-       added_notification a = new added_notification();
-        a.setVisible(true);
+      
     }//GEN-LAST:event_add_buttonMouseClicked
 
     private void delete_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_buttonMouseClicked
@@ -1272,22 +1323,23 @@ private void startClock() {
     }//GEN-LAST:event_resourceTypeActionPerformed
 
     private void resourceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resourceTableMouseClicked
-        int row = resourceTable.getSelectedRow();
-        if (row < 0) return;
-        
-        int id = (int) resourceTable.getValueAt(row, 0);
-        Resource selected = rc.getResourceById(id);
-        if (selected == null) return;
-        
-        resourceID.setText(String.valueOf(selected.getResourceId()));
-        title.setText(selected.getTitle());
-        resourceType.setSelectedItem(selected.getResourceType() != null ? selected.getResourceType().name() : "");
-        author.setText(selected.getAuthor());
-        yearPublished.setText(String.valueOf(selected.getYearPublished()));
-        isbn_issn.setText(selected.getIsbnIssn());
-        degreeLevel.setText(selected.getDegreeLevel());
-        status.setSelectedItem(selected.getStatus() != null ? selected.getStatus().name() : "");
-        totalCopies.setText(String.valueOf(selected.getTotalCopies()));
+          int row = resourceTable.rowAtPoint(evt.getPoint()); // ← key fix
+    if (row < 0) return; // empty area handled by the other listener
+    
+    int id = (int) resourceTable.getValueAt(row, 0);
+    Resource selected = rc.getResourceById(id);
+    if (selected == null) return;
+    
+    resourceID.setText(String.valueOf(selected.getResourceId()));
+    title.setText(selected.getTitle());
+    resourceType.setSelectedItem(selected.getResourceType() != null ? selected.getResourceType().name() : "");
+    author.setText(selected.getAuthor());
+    yearPublished.setText(String.valueOf(selected.getYearPublished()));
+    isbn_issn.setText(selected.getIsbnIssn());
+    degreeLevel.setText(selected.getDegreeLevel());
+    status.setSelectedItem(selected.getStatus() != null ? selected.getStatus().name() : "");
+    totalCopies.setText(String.valueOf(selected.getTotalCopies()));
+
     }//GEN-LAST:event_resourceTableMouseClicked
 
     private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed

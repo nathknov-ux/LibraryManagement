@@ -91,9 +91,11 @@ public class delete_resource extends javax.swing.JFrame {
                 search_buttonMouseEntered(evt);
             }
         });
+        search_button.addActionListener(this::search_buttonActionPerformed);
 
         search_button1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         search_button1.setText("NO");
+        search_button1.addActionListener(this::search_button1ActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -157,13 +159,21 @@ public class delete_resource extends javax.swing.JFrame {
             this.dispose();
         } else {
             javax.swing.JOptionPane.showMessageDialog(this,
-                "Delete failed.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                "Cannot be deleted if there is existing copies.", "Delete failed", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_search_buttonMouseClicked
 
     private void search_buttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_buttonMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_search_buttonMouseEntered
+
+    private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_buttonActionPerformed
+
+    private void search_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_button1ActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_search_button1ActionPerformed
 
     /**
      * @param args the command line arguments

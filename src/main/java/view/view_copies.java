@@ -217,7 +217,7 @@ public class view_copies extends javax.swing.JFrame {
 
         jLabel4.setText("Status:");
 
-        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Borrowed", "Returned", "Overdue", "Lost", "Damaged", "Under Repair", "Withdrawn" }));
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Borrowed", "Reserve", "Lost", "Damaged", "Under_Repair", "Widthdrawn" }));
 
         jLabel7.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel7.setText("DETAILS");

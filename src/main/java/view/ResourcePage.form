@@ -1416,17 +1416,18 @@
                               <Font name="Georgia" size="12" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="10">
-                                <StringItem index="0" value="Book"/>
-                                <StringItem index="1" value="Dissertation"/>
-                                <StringItem index="2" value="Government_Documents"/>
-                                <StringItem index="3" value="Journal"/>
-                                <StringItem index="4" value="Map"/>
-                                <StringItem index="5" value="Magazine"/>
-                                <StringItem index="6" value="Newspaper"/>
-                                <StringItem index="7" value="Research_Paper"/>
-                                <StringItem index="8" value="Thesis"/>
-                                <StringItem index="9" value="Other"/>
+                              <StringArray count="11">
+                                <StringItem index="0" value="Audiovisual"/>
+                                <StringItem index="1" value="Book"/>
+                                <StringItem index="2" value="Dissertation"/>
+                                <StringItem index="3" value="Government_Document"/>
+                                <StringItem index="4" value="Journal"/>
+                                <StringItem index="5" value="Map"/>
+                                <StringItem index="6" value="Magazine"/>
+                                <StringItem index="7" value="Newspaper"/>
+                                <StringItem index="8" value="Research_Paper"/>
+                                <StringItem index="9" value="Thesis"/>
+                                <StringItem index="10" value="Other"/>
                               </StringArray>
                             </Property>
                           </Properties>
